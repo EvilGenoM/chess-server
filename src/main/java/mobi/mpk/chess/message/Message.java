@@ -3,7 +3,7 @@ package mobi.mpk.chess.message;
 public abstract class Message {
 
     private String name;
-    private String text;
+    protected String text;
 
     public Message(String name){
 

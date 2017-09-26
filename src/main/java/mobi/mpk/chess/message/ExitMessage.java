@@ -7,7 +7,14 @@ public class ExitMessage extends Message {
     }
 
     public boolean setText(String text) {
-        return false;
+
+        if(text.equals("exit")){
+            this.text = text;
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }

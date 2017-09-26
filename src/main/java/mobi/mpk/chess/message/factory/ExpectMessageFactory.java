@@ -1,6 +1,7 @@
 package mobi.mpk.chess.message.factory;
 
 import mobi.mpk.chess.message.ExitMessage;
+import mobi.mpk.chess.message.ExpectMessage;
 import mobi.mpk.chess.message.Message;
 
 public class ExpectMessageFactory extends Factory {
@@ -10,7 +11,7 @@ public class ExpectMessageFactory extends Factory {
     }
 
     public Message methodFactory() {
-        return new ExitMessage(getName());
+        return new ExpectMessage(getName());
     }
 
 }

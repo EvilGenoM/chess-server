@@ -7,7 +7,14 @@ public class ShowWaitingMessage extends Message {
     }
 
     public boolean setText(String text) {
-        return false;
+
+        if(text.equals("show waiting")){
+            this.text = text;
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }

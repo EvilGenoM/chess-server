@@ -7,7 +7,16 @@ public class JoinMessage extends Message {
     }
 
     public boolean setText(String text) {
-        return false;
+
+        String[] textCommand = text.split(" ");
+
+        if(textCommand[0].equals("join")){
+            this.text = text;
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }
