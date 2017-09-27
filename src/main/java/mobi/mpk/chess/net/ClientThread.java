@@ -2,6 +2,8 @@ package mobi.mpk.chess.net;
 
 
 import com.google.gson.Gson;
+import mobi.mpk.chess.message.ManagerMessage;
+import mobi.mpk.chess.message.Message;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -24,13 +26,20 @@ public class ClientThread extends Thread {
             DataInputStream in = new DataInputStream(this.socket.getInputStream());
             DataOutputStream out = new DataOutputStream(this.socket.getOutputStream());
 
+            Sender sender = new Sender();
             Gson gson = new Gson();
+            String line;
 
             while(true){
 
+                line = in.readUTF();
+                Message message = gson.fromJson(line, Message.class);
+
+//                ManagerMessage manager = new ManagerMessage(" ");
+
             }
 
-        } catch (IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex);
         }
 

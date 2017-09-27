@@ -18,4 +18,8 @@ public class User {
     public boolean equals(Object o) {
         return super.equals(o);
     }
+
+    public String getName() {
+        return name;
+    }
 }

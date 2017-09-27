@@ -2,11 +2,14 @@ package mobi.mpk.chess.registry;
 
 import mobi.mpk.chess.User;
 
+import java.io.DataOutputStream;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class UserRegistry<K, E> extends Registry<K, E> {
 
     private static UserRegistry<String, User> instance;
+    private ConcurrentMap<User, DataOutputStream> adressUser;
 
     private UserRegistry(){
         value = new ConcurrentHashMap<K, E>();
@@ -19,6 +22,18 @@ public class UserRegistry<K, E> extends Registry<K, E> {
             }
         }
         return instance;
+    }
+
+    public void addAdress(User user, DataOutputStream out){
+
+        adressUser.putIfAbsent(user, out);
+
+    }
+
+    public DataOutputStream getAdress(User user){
+
+        return adressUser.get(user);
+
     }
 
 }
