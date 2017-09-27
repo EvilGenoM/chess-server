@@ -93,10 +93,10 @@ public class TestManagerMessage {
 
     }
 
+
     @Test(expected = MessageErrorException.class)
     public void testException() throws MessageErrorException {
         ManagerMessage managerMessage = new ManagerMessage("Test");
         managerMessage.getMessage("a1 a2 a3");
     }
-
 }
