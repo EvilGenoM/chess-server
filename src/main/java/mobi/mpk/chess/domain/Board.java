@@ -1,11 +1,13 @@
 package mobi.mpk.chess.domain;
 
 
+import mobi.mpk.chess.domain.exception.CellCorrectException;
+
 public class Board {
 
     private Cell[][] cells;
 
-    public Board(){
+    public Board() throws CellCorrectException {
 
         cells = new Cell[8][8];
 

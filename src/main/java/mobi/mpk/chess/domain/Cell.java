@@ -1,5 +1,6 @@
 package mobi.mpk.chess.domain;
 
+import mobi.mpk.chess.domain.exception.CellCorrectException;
 import mobi.mpk.chess.domain.figure.Figure;
 
 public class Cell {
@@ -8,28 +9,41 @@ public class Cell {
     private int y;
     private Figure figure = null;
 
+    public Cell(char x, int y, Figure figure) throws CellCorrectException {
 
-    public Cell(char x, int y){
-        this.x = x;
-        this.y = y;
-        this.figure = null;
-    }
+        addXY(x, y);
 
-    public Cell(char x, int y, Figure figure){
-        this.x = x;
-        this.y = y;
         this.figure = figure;
     }
 
-    public Cell(int x, int y){
+    public Cell(char x, int y) throws CellCorrectException {
+        this(x, y, null);
+    }
 
-        this.x = 'a';
+    public Cell(int x, int y) throws CellCorrectException {
+
+        char symbolX = 'a';
         for(int i = 0; i < x; i++){
-            ++this.x;
+            ++symbolX;
         }
 
-        this.y = y+1;
+        int numberY = y+1;
+
+        addXY(symbolX, numberY);
         this.figure = null;
+
+    }
+
+    private void addXY(char x, int y) throws CellCorrectException {
+
+        if(x >= 'a' && x <= 'h'){
+            this.x = x;
+        } else throw new CellCorrectException();
+
+        if(y >= 1){
+            this.y = y;
+        } else throw new CellCorrectException();
+
     }
 
     public void setFigure(Figure figure){

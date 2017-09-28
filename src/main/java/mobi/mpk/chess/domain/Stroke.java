@@ -1,5 +1,8 @@
 package mobi.mpk.chess.domain;
 
+import mobi.mpk.chess.domain.exception.CellCorrectException;
+import mobi.mpk.chess.domain.exception.StrokeCorrectException;
+
 import java.util.Date;
 
 public class Stroke {
@@ -18,11 +21,13 @@ public class Stroke {
     }
 
 
-    public Stroke(String stroke){
+    public Stroke(String stroke) throws CellCorrectException, StrokeCorrectException {
 
-        String[] coordCell;
+        String[] coordCell = stroke.split(" ");
 
-        coordCell = stroke.split(" ");
+        if(coordCell.length != 2){
+            throw new StrokeCorrectException();
+        }
 
         if(coordCell[0] != null && coordCell[1] != null){
             this.from = createCell(coordCell[0]);
@@ -41,15 +46,14 @@ public class Stroke {
         return to;
     }
 
-    private Cell createCell(String coordCell){
+    private Cell createCell(String coordCell) throws CellCorrectException, StrokeCorrectException {
 
-        char[] letter = {'a', 'b', 'c','d','e','f','g','h'};
-
+        if(coordCell.length() > 2){
+            throw new StrokeCorrectException();
+        }
 
         char xCoordCell = coordCell.charAt(0);
         int yCoordCell = Character.getNumericValue(coordCell.charAt(1));
-
-
 
         return new Cell(xCoordCell, yCoordCell);
 

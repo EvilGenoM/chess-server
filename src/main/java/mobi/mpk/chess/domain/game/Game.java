@@ -4,6 +4,7 @@ import mobi.mpk.chess.domain.Board;
 import mobi.mpk.chess.domain.Color;
 import mobi.mpk.chess.domain.Player;
 import mobi.mpk.chess.domain.ResultStroke;
+import mobi.mpk.chess.domain.exception.CellCorrectException;
 import mobi.mpk.chess.domain.figure.Figure;
 import mobi.mpk.chess.domain.rules.InspectorRules;
 
@@ -25,7 +26,14 @@ public abstract class Game {
         this.player2.setColorFigures(Color.black);
 
         this.inspectorRules = inspectorRules;
-        this.board = new Board();
+
+        try {
+
+            this.board = new Board();
+
+        } catch (CellCorrectException e) {
+            e.printStackTrace();
+        }
 
     }
 

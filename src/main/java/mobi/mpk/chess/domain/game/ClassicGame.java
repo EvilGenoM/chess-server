@@ -1,11 +1,11 @@
 package mobi.mpk.chess.domain.game;
 
-import mobi.mpk.chess.domain.Cell;
-import mobi.mpk.chess.domain.Color;
-import mobi.mpk.chess.domain.Player;
+import mobi.mpk.chess.domain.*;
+import mobi.mpk.chess.domain.exception.CellCorrectException;
+import mobi.mpk.chess.domain.exception.StrokeCorrectException;
 import mobi.mpk.chess.domain.figure.Figure;
-import mobi.mpk.chess.domain.rule.ClassicRules;
-import mobi.mpk.chess.domain.rule.Rules;
+import mobi.mpk.chess.domain.rules.ClassicInspectorRules;
+import mobi.mpk.chess.domain.rules.InspectorRules;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,16 +14,16 @@ public class ClassicGame extends Game {
 
     private Color nowStroke = Color.white;
 
-    public ClassicGame(Player player1, Player player2, Rules rules) {
+    public ClassicGame(Player player1, Player player2, InspectorRules InspectorRules) {
 
-        super(player1, player2, rules);
+        super(player1, player2, InspectorRules);
         initBoard();
 
     }
 
     public ClassicGame(Player player1, Player player2){
 
-        this(player1, player2, new ClassicRules());
+        this(player1, player2, new ClassicInspectorRules());
 
     }
 
@@ -32,11 +32,11 @@ public class ClassicGame extends Game {
 
         Cell[][] cells = getBoard().getMassiveCell();
 
-        List<Figure> orderWhiteFigure = getInspectorRules().orderFigure(Color.white);
-        putWhiteFigures(cells, orderWhiteFigure);
+        //List<Figure> orderWhiteFigure = getInspectorRules().orderFigure(Color.white);
+        //putWhiteFigures(cells, orderWhiteFigure);
 
-        List<Figure> orderBlackFigure = getInspectorRules().orderFigure(Color.black);
-        putBlackFigures(cells, orderBlackFigure);
+        //List<Figure> orderBlackFigure = getInspectorRules().orderFigure(Color.black);
+        //putBlackFigures(cells, orderBlackFigure);
 
     }
 
@@ -77,13 +77,19 @@ public class ClassicGame extends Game {
 
         if(player.getColorFigures() == nowStroke){
 
-            Stroke stroke = new Stroke(strokeStr);
-            ResultStroke resultStroke = player.move(stroke, getBoard(), getInspectorRules());
-            if(resultStroke.isSuccess()){
-                nextStroke();
+            try {
+                Stroke stroke = new Stroke(strokeStr);
+            } catch (CellCorrectException e) {
+                e.printStackTrace();
+            } catch (StrokeCorrectException e) {
+                e.printStackTrace();
             }
+            //ResultStroke resultStroke = player.move(stroke, getBoard(), getInspectorRules());
+            //if(resultStroke.isSuccess()){
+              //  nextStroke();
+            //}
 
-            return resultStroke;
+            //return resultStroke;
 
         } else {
 
@@ -91,6 +97,7 @@ public class ClassicGame extends Game {
             return resultStroke;
 
         }
+        return null;
     }
 
     private void nextStroke(){
