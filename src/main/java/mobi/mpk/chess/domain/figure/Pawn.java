@@ -9,4 +9,7 @@ public class Pawn extends Figure {
         super(color);
     }
 
+    public Pawn() {
+
+    }
 }

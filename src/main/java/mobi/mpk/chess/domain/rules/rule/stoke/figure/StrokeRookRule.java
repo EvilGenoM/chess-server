@@ -2,6 +2,8 @@ package mobi.mpk.chess.domain.rules.rule.stoke.figure;
 
 import mobi.mpk.chess.domain.Cell;
 import mobi.mpk.chess.domain.Stroke;
+import mobi.mpk.chess.domain.figure.Knight;
+import mobi.mpk.chess.domain.figure.Rook;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +15,11 @@ public class StrokeRookRule implements StrokeFigureRule {
 
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();
+
+        if(!stroke.getFigure().equals(new Rook())){
+            return false;
+        }
+
 
         boolean isStroke = true;
 

@@ -1,10 +1,9 @@
 package mobi.mpk.chess.domain.rules.rule.stoke.figure;
 
 import mobi.mpk.chess.domain.Cell;
+import mobi.mpk.chess.domain.Color;
 import mobi.mpk.chess.domain.Stroke;
-
-import java.util.LinkedList;
-import java.util.List;
+import mobi.mpk.chess.domain.figure.King;
 
 public class StrokeKingRule  implements StrokeFigureRule{
 
@@ -13,6 +12,10 @@ public class StrokeKingRule  implements StrokeFigureRule{
 
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();
+
+        if(!stroke.getFigure().equals(new King())){
+           return false;
+        }
 
         if(from.getX()-to.getX() == 1){
 

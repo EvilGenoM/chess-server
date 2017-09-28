@@ -1,15 +1,38 @@
 package figure.stroke.rule;
 
+import mobi.mpk.chess.domain.Board;
+import mobi.mpk.chess.domain.Cell;
+import mobi.mpk.chess.domain.Color;
 import mobi.mpk.chess.domain.Stroke;
 import mobi.mpk.chess.domain.exception.CellCorrectException;
+import mobi.mpk.chess.domain.exception.FigureNotFindException;
 import mobi.mpk.chess.domain.exception.StrokeCorrectException;
+import mobi.mpk.chess.domain.figure.King;
 import mobi.mpk.chess.domain.rules.rule.stoke.figure.StrokeFigureRule;
 import mobi.mpk.chess.domain.rules.rule.stoke.figure.StrokeKingRule;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class TestStrokeKingRule {
+
+    private Board board;
+
+    @Before
+    public void before() throws CellCorrectException {
+
+        board = new Board();
+
+        Cell cell = new Cell('a',1);
+        cell = board.getCell(cell);
+        cell.setFigure(new King(Color.white));
+
+        cell = new Cell('c',3);
+        cell = board.getCell(cell);
+        cell.setFigure(new King(Color.white));
+
+    }
 
     @Test
     public void testA1A2(){
@@ -19,9 +42,12 @@ public class TestStrokeKingRule {
         Stroke stroke = null;
         try {
             stroke = new Stroke("a1 a2");
+            stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
         } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
         boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
@@ -37,9 +63,12 @@ public class TestStrokeKingRule {
         Stroke stroke = null;
         try {
             stroke = new Stroke("a1 b1");
+            stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
         } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
         boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
@@ -55,9 +84,12 @@ public class TestStrokeKingRule {
         Stroke stroke = null;
         try {
             stroke = new Stroke("a1 b2");
+            stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
         } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
         boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
@@ -73,9 +105,12 @@ public class TestStrokeKingRule {
         Stroke stroke = null;
         try {
             stroke = new Stroke("c3 b3");
+            stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
         } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
         boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
@@ -91,9 +126,12 @@ public class TestStrokeKingRule {
         Stroke stroke = null;
         try {
             stroke = new Stroke("c3 b4");
+            stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
         } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
         boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
@@ -109,9 +147,12 @@ public class TestStrokeKingRule {
         Stroke stroke = null;
         try {
             stroke = new Stroke("c3 c2");
+            stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
         } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
         boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
@@ -127,9 +168,12 @@ public class TestStrokeKingRule {
         Stroke stroke = null;
         try {
             stroke = new Stroke("c3 b2");
+            stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
         } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
         boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
@@ -145,9 +189,12 @@ public class TestStrokeKingRule {
         Stroke stroke = null;
         try {
             stroke = new Stroke("c3 d2");
+            stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
         } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
         boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
@@ -163,9 +210,12 @@ public class TestStrokeKingRule {
         Stroke stroke = null;
         try {
             stroke = new Stroke("a1 a3");
+            stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
         } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
         boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);

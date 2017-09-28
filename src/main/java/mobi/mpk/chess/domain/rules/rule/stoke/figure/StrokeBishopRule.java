@@ -2,6 +2,8 @@ package mobi.mpk.chess.domain.rules.rule.stoke.figure;
 
 import mobi.mpk.chess.domain.Cell;
 import mobi.mpk.chess.domain.Stroke;
+import mobi.mpk.chess.domain.figure.Bishop;
+import mobi.mpk.chess.domain.figure.King;
 
 public class StrokeBishopRule implements StrokeFigureRule {
 
@@ -10,6 +12,10 @@ public class StrokeBishopRule implements StrokeFigureRule {
 
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();
+
+        if(!stroke.getFigure().equals(new Bishop())){
+            return false;
+        }
 
         boolean isStroke = true;
 

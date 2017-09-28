@@ -4,6 +4,7 @@ import mobi.mpk.chess.domain.Cell;
 import mobi.mpk.chess.domain.Color;
 import mobi.mpk.chess.domain.Stroke;
 import mobi.mpk.chess.domain.figure.Figure;
+import mobi.mpk.chess.domain.figure.Pawn;
 
 public class StrokePawnRule implements StrokeFigureRule {
 
@@ -13,6 +14,11 @@ public class StrokePawnRule implements StrokeFigureRule {
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();
         Figure figure = stroke.getFigure();
+
+        if(!stroke.getFigure().equals(new Pawn())){
+            return false;
+        }
+
 
         if (figure.getColor() == Color.white) {
             return isStrokeWhitePawn(from, to);

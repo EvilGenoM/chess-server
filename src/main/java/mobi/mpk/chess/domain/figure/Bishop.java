@@ -11,4 +11,7 @@ public class Bishop extends Figure {
         super(color);
     }
 
+    public Bishop() {
+
+    }
 }

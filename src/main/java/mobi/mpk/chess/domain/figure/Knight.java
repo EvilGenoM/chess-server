@@ -3,10 +3,13 @@ package mobi.mpk.chess.domain.figure;
 
 import mobi.mpk.chess.domain.Color;
 
-public class kNight extends Figure {
+public class Knight extends Figure {
 
-    public kNight(Color color) {
+    public Knight(Color color) {
         super(color);
     }
 
+    public Knight() {
+
+    }
 }

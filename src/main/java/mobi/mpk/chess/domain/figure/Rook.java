@@ -9,4 +9,7 @@ public class Rook extends Figure {
         super(color);
     }
 
+    public Rook() {
+
+    }
 }

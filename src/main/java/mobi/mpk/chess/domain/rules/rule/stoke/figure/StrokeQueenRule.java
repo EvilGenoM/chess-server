@@ -2,6 +2,8 @@ package mobi.mpk.chess.domain.rules.rule.stoke.figure;
 
 import mobi.mpk.chess.domain.Cell;
 import mobi.mpk.chess.domain.Stroke;
+import mobi.mpk.chess.domain.figure.Knight;
+import mobi.mpk.chess.domain.figure.Queen;
 
 public class StrokeQueenRule implements StrokeFigureRule {
 
@@ -10,6 +12,11 @@ public class StrokeQueenRule implements StrokeFigureRule {
 
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();
+
+        if(!stroke.getFigure().equals(new Queen())){
+            return false;
+        }
+
 
         boolean isStroke = true;
 

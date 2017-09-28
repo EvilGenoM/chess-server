@@ -9,4 +9,7 @@ public class Queen extends Figure {
         super(color);
     }
 
+    public Queen() {
+
+    }
 }
