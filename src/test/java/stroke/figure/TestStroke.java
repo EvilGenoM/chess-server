@@ -1,4 +1,4 @@
-package stroke.figure.rule;
+package stroke.figure;
 
 import mobi.mpk.chess.domain.Cell;
 import mobi.mpk.chess.domain.Stroke;

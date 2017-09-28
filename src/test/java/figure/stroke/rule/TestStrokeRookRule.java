@@ -1,4 +1,4 @@
-package stroke.figure.rule;
+package figure.stroke.rule;
 
 import mobi.mpk.chess.domain.Stroke;
 import mobi.mpk.chess.domain.exception.CellCorrectException;
