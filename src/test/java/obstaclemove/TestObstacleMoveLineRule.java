@@ -7,6 +7,7 @@ import mobi.mpk.chess.domain.Stroke;
 import mobi.mpk.chess.domain.exception.CellCorrectException;
 import mobi.mpk.chess.domain.exception.FigureNotFindException;
 import mobi.mpk.chess.domain.exception.StrokeCorrectException;
+import mobi.mpk.chess.domain.figure.Knight;
 import mobi.mpk.chess.domain.figure.Pawn;
 import mobi.mpk.chess.domain.figure.Queen;
 import mobi.mpk.chess.domain.figure.Rook;
@@ -41,6 +42,9 @@ public class TestObstacleMoveLineRule {
 
         cell = board.getCell('a',8);
         cell.setFigure(new Rook(Color.white));
+
+        cell = board.getCell('e',4);
+        cell.setFigure(new Knight(Color.white));
     }
 
     @Test
@@ -225,6 +229,72 @@ public class TestObstacleMoveLineRule {
         Stroke stroke = null;
         try {
             stroke = new Stroke("h8 a1");
+            stroke.findFigure(board);
+
+            ObstacleMoveRule rule = new ObstacleMoveLineRule();
+            boolean result = rule.checkRule(stroke, board);
+
+            assertEquals(result, false);
+        } catch (CellCorrectException e) {
+            e.printStackTrace();
+        } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void testG1G2(){
+
+        Stroke stroke = null;
+        try {
+            stroke = new Stroke("g1 g2");
+            stroke.findFigure(board);
+
+            ObstacleMoveRule rule = new ObstacleMoveLineRule();
+            boolean result = rule.checkRule(stroke, board);
+
+            assertEquals(result, false);
+        } catch (CellCorrectException e) {
+            e.printStackTrace();
+        } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void testE4D6(){
+
+        Stroke stroke = null;
+        try {
+            stroke = new Stroke("e4 d6");
+            stroke.findFigure(board);
+
+            ObstacleMoveRule rule = new ObstacleMoveLineRule();
+            boolean result = rule.checkRule(stroke, board);
+
+            assertEquals(result, false);
+        } catch (CellCorrectException e) {
+            e.printStackTrace();
+        } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void testE4C3(){
+
+        Stroke stroke = null;
+        try {
+            stroke = new Stroke("e4 c3");
             stroke.findFigure(board);
 
             ObstacleMoveRule rule = new ObstacleMoveLineRule();
