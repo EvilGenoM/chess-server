@@ -31,5 +31,23 @@ public class Board {
         return this.cells[x][y];
     }
 
+    public Cell getCell(char letter, int number){
+
+
+        if(letter < 'a' || letter > 'h'){
+            return null;
+        }
+
+        if(number < 1 || number > 8){
+            return null;
+        }
+
+        int x = (letter - 'a');
+        int y = number - 1;
+
+
+        return this.cells[x][y];
+    }
+
 
 }

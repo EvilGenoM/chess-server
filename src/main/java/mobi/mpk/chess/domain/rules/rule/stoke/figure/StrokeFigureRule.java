@@ -4,6 +4,6 @@ import mobi.mpk.chess.domain.Stroke;
 
 public interface StrokeFigureRule {
 
-    boolean strokeFigureRule(Stroke stroke);
+    boolean checkRule(Stroke stroke);
 
 }

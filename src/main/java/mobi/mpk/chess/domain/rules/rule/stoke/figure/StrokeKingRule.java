@@ -8,7 +8,7 @@ import mobi.mpk.chess.domain.figure.King;
 public class StrokeKingRule  implements StrokeFigureRule{
 
     @Override
-    public boolean strokeFigureRule(Stroke stroke) {
+    public boolean checkRule(Stroke stroke) {
 
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();

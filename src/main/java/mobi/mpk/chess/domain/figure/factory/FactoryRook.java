@@ -1,4 +1,4 @@
-package mobi.mpk.chess.domain.factory.figure;
+package mobi.mpk.chess.domain.figure.factory;
 
 
 import mobi.mpk.chess.domain.Color;

@@ -8,7 +8,6 @@ import mobi.mpk.chess.domain.exception.CellCorrectException;
 import mobi.mpk.chess.domain.exception.FigureNotFindException;
 import mobi.mpk.chess.domain.exception.StrokeCorrectException;
 import mobi.mpk.chess.domain.figure.Bishop;
-import mobi.mpk.chess.domain.figure.King;
 import mobi.mpk.chess.domain.rules.rule.stoke.figure.StrokeBishopRule;
 import mobi.mpk.chess.domain.rules.rule.stoke.figure.StrokeFigureRule;
 import org.junit.Before;
@@ -59,7 +58,7 @@ public class TestStrokeBishopRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -81,7 +80,7 @@ public class TestStrokeBishopRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -103,7 +102,7 @@ public class TestStrokeBishopRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -125,7 +124,7 @@ public class TestStrokeBishopRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -147,7 +146,7 @@ public class TestStrokeBishopRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, false);
 

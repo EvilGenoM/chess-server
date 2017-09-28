@@ -11,7 +11,7 @@ import java.util.List;
 public class StrokeKnightRule implements StrokeFigureRule {
 
     @Override
-    public boolean strokeFigureRule(Stroke stroke) {
+    public boolean checkRule(Stroke stroke) {
 
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();

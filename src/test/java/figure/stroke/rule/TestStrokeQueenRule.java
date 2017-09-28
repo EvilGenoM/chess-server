@@ -7,9 +7,7 @@ import mobi.mpk.chess.domain.Stroke;
 import mobi.mpk.chess.domain.exception.CellCorrectException;
 import mobi.mpk.chess.domain.exception.FigureNotFindException;
 import mobi.mpk.chess.domain.exception.StrokeCorrectException;
-import mobi.mpk.chess.domain.figure.Bishop;
 import mobi.mpk.chess.domain.figure.Queen;
-import mobi.mpk.chess.domain.rules.rule.stoke.figure.StrokeBishopRule;
 import mobi.mpk.chess.domain.rules.rule.stoke.figure.StrokeFigureRule;
 import mobi.mpk.chess.domain.rules.rule.stoke.figure.StrokeQueenRule;
 import org.junit.Before;
@@ -52,7 +50,7 @@ public class TestStrokeQueenRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -74,7 +72,7 @@ public class TestStrokeQueenRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -96,7 +94,7 @@ public class TestStrokeQueenRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -118,7 +116,7 @@ public class TestStrokeQueenRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -140,7 +138,7 @@ public class TestStrokeQueenRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -162,7 +160,7 @@ public class TestStrokeQueenRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -184,7 +182,7 @@ public class TestStrokeQueenRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -206,7 +204,7 @@ public class TestStrokeQueenRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -228,7 +226,7 @@ public class TestStrokeQueenRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -250,7 +248,7 @@ public class TestStrokeQueenRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -272,7 +270,7 @@ public class TestStrokeQueenRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, true);
 
@@ -294,7 +292,7 @@ public class TestStrokeQueenRule {
         } catch (FigureNotFindException e) {
             e.printStackTrace();
         }
-        boolean resultStroke = strokeFigureRule.strokeFigureRule(stroke);
+        boolean resultStroke = strokeFigureRule.checkRule(stroke);
 
         assertEquals(resultStroke, false);
 
