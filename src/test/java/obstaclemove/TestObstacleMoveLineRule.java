@@ -32,6 +32,15 @@ public class TestObstacleMoveLineRule {
 
         cell = board.getCell('g', 1);
         cell.setFigure(new Pawn(Color.black));
+
+        cell = board.getCell('h',8);
+        cell.setFigure(new Rook(Color.white));
+
+        cell = board.getCell('h',1);
+        cell.setFigure(new Rook(Color.white));
+
+        cell = board.getCell('a',8);
+        cell.setFigure(new Rook(Color.white));
     }
 
     @Test
@@ -128,6 +137,94 @@ public class TestObstacleMoveLineRule {
         Stroke stroke = null;
         try {
             stroke = new Stroke("a1 h1");
+            stroke.findFigure(board);
+
+            ObstacleMoveRule rule = new ObstacleMoveLineRule();
+            boolean result = rule.checkRule(stroke, board);
+
+            assertEquals(result, false);
+        } catch (CellCorrectException e) {
+            e.printStackTrace();
+        } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void testH8H2(){
+
+        Stroke stroke = null;
+        try {
+            stroke = new Stroke("h8 h2");
+            stroke.findFigure(board);
+
+            ObstacleMoveRule rule = new ObstacleMoveLineRule();
+            boolean result = rule.checkRule(stroke, board);
+
+            assertEquals(result, true);
+        } catch (CellCorrectException e) {
+            e.printStackTrace();
+        } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void testH8H1(){
+
+        Stroke stroke = null;
+        try {
+            stroke = new Stroke("h8 h1");
+            stroke.findFigure(board);
+
+            ObstacleMoveRule rule = new ObstacleMoveLineRule();
+            boolean result = rule.checkRule(stroke, board);
+
+            assertEquals(result, false);
+        } catch (CellCorrectException e) {
+            e.printStackTrace();
+        } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void testH8C8(){
+
+        Stroke stroke = null;
+        try {
+            stroke = new Stroke("h8 c8");
+            stroke.findFigure(board);
+
+            ObstacleMoveRule rule = new ObstacleMoveLineRule();
+            boolean result = rule.checkRule(stroke, board);
+
+            assertEquals(result, true);
+        } catch (CellCorrectException e) {
+            e.printStackTrace();
+        } catch (StrokeCorrectException e) {
+            e.printStackTrace();
+        } catch (FigureNotFindException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void testH8A1(){
+
+        Stroke stroke = null;
+        try {
+            stroke = new Stroke("h8 a1");
             stroke.findFigure(board);
 
             ObstacleMoveRule rule = new ObstacleMoveLineRule();
