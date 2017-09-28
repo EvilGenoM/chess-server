@@ -20,6 +20,7 @@ public class ObstacleMoveLineRule implements ObstacleMoveRule {
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();
         to = board.getCell(to);
+
         Figure figure = stroke.getFigure();
 
         if(figure.equals(new Pawn()) || figure.equals(new Knight())){
@@ -43,9 +44,11 @@ public class ObstacleMoveLineRule implements ObstacleMoveRule {
 
         char toX = to.getX();
 
+        int changeX = (toX-fromX)/Math.abs(toX-fromX);
+
         while(fromX != toX){
 
-            ++fromX;
+            fromX += changeX;
 
             Cell cell = board.getCell(fromX, fromY);
             if(fromX != toX && cell.getFigure() != null){
@@ -65,9 +68,11 @@ public class ObstacleMoveLineRule implements ObstacleMoveRule {
 
         int toY = to.getY();
 
+        int changeY = (toY-fromY)/Math.abs(toY-fromY);
+
         while(fromY != toY){
 
-            ++fromY;
+            fromY += changeY;
 
             Cell cell = board.getCell(fromX, fromY);
 
