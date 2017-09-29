@@ -19,7 +19,7 @@ public class Player {
 
     public void move(Stroke stroke, Board board, InspectorRules inspectorRules) throws Exception{
 
-        inspectorRules.checkMoveRules(board, stroke);
+        inspectorRules.checkMoveRules(board, stroke, this.colorFigures);
 
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();
