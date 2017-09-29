@@ -15,6 +15,8 @@ public class ObstacleMovePawnRule implements ObstacleMoveRule {
 
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();
+        to = board.getCell(to);
+
         Figure figure = stroke.getFigure();
 
         if (!figure.equals(new Pawn())) {
