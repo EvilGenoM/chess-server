@@ -21,6 +21,10 @@ public abstract class Figure {
     @Override
     public boolean equals(Object o){
 
+        if(this == null || o == null){
+            return false;
+        }
+
         if(this.getClass().getSimpleName().equals(o.getClass().getSimpleName())){
 
             return true;

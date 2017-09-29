@@ -6,7 +6,6 @@ import mobi.mpk.chess.domain.Color;
 import mobi.mpk.chess.domain.Stroke;
 import mobi.mpk.chess.domain.exception.CellCorrectException;
 import mobi.mpk.chess.domain.exception.FigureNotFindException;
-import mobi.mpk.chess.domain.exception.StrokeCorrectException;
 import mobi.mpk.chess.domain.exception.rule.FigureCanNotMoveException;
 import mobi.mpk.chess.domain.exception.rule.PossibleMoveException;
 import mobi.mpk.chess.domain.exception.rule.WayFigureHaveObstaclesException;

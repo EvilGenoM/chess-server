@@ -24,6 +24,9 @@ public class Player {
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();
 
+        from = board.getCell(from);
+        to = board.getCell(to);
+
         Figure figure = from.getFigure();
         to.setFigure(figure);
         from.setFigure(null);
