@@ -4,6 +4,7 @@ package mobi.mpk.chess.net;
 import com.google.gson.Gson;
 import mobi.mpk.chess.User;
 import mobi.mpk.chess.handlermessage.HandlerMessage;
+import mobi.mpk.chess.handlermessage.LobbyHandlerMessage;
 import mobi.mpk.chess.message.CheckNameMessage;
 import mobi.mpk.chess.message.ManagerMessage;
 import mobi.mpk.chess.message.Message;
@@ -24,17 +25,18 @@ public class ClientThread extends Thread {
 
     public ClientThread(Socket socket){
 
+        controller = new LobbyHandlerMessage();
         this.socket = socket;
 
     }
 
     public void run(){
 
+        Sender sender = new Sender();
         try{
             DataInputStream in = new DataInputStream(this.socket.getInputStream());
             DataOutputStream out = new DataOutputStream(this.socket.getOutputStream());
 
-            Sender sender = new Sender();
             Gson gson = new Gson();
             String line;
 
@@ -50,6 +52,7 @@ public class ClientThread extends Thread {
                 if(reply.getSuccess()){
                     user = new User(message.text);
                     UserRegistry.getInstance().addElement(user.getName(), user);
+                    UserRegistry.getInstance().addAdress(user, out);
                     out.writeUTF("Success");
                     break;
                 }

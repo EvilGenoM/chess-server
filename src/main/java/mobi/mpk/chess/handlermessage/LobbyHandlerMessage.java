@@ -37,7 +37,7 @@ public class LobbyHandlerMessage implements HandlerMessage {
     }
 
     private boolean checkName(String name){
-        if(UserRegistry.getInstance().checkKey(name)){
+        if(!UserRegistry.getInstance().checkKey(name)){
             return true;
         } else {
             return false;
