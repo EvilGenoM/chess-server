@@ -1,6 +1,7 @@
 package mobi.mpk.chess.domain;
 
 import mobi.mpk.chess.User;
+import mobi.mpk.chess.domain.figure.Figure;
 import mobi.mpk.chess.domain.rules.InspectorRules;
 
 public class Player {
@@ -16,11 +17,16 @@ public class Player {
         return this.user;
     }
 
-    public boolean move(Stroke stroke, Board board, InspectorRules inspectorRules){
+    public void move(Stroke stroke, Board board, InspectorRules inspectorRules) throws Exception{
 
         inspectorRules.checkMoveRules(board, stroke);
 
-        return true;
+        Cell from = stroke.getFrom();
+        Cell to = stroke.getTo();
+
+        Figure figure = from.getFigure();
+        to.setFigure(figure);
+        from.setFigure(null);
 
     }
 
