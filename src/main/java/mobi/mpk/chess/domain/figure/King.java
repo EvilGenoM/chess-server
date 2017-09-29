@@ -9,7 +9,7 @@ public class King extends Figure {
         super(color);
     }
 
-    public King(){
+    public King() {
 
     }
 

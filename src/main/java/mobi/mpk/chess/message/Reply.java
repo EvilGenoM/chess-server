@@ -25,11 +25,11 @@ public class Reply {
         return true;
     }
 
-    public void addUser(User user){
+    public void addUser(User user) {
         users.add(user);
     }
 
-    public List<User> getUser(){
+    public List<User> getUser() {
         return users;
     }
 

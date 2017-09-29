@@ -23,14 +23,14 @@ public class ClassicOrderFigureRule implements OrderFigureRule {
         creators.add(new FactoryKnight());
         creators.add(new FactoryRook());
 
-        for(int i = 0; i < 8; i++){
+        for (int i = 0; i < 8; i++) {
 
             creators.add(new FactoryPawn());
 
         }
 
 
-        for(FactoryFigure creator: creators){
+        for (FactoryFigure creator : creators) {
             orderFigures.add(creator.factoryMethod(color));
         }
 

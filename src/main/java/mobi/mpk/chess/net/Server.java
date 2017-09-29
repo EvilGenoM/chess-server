@@ -12,23 +12,23 @@ public class Server {
 
     int port = Config.PORT;
 
-    public Server(){
-        try{
+    public Server() {
+        try {
             ServerSocket serverSocket = new ServerSocket(this.port);
 
             System.getProperty("java.class.path");
             Logger log = LogManager.getLogger("server");
             log.info("Wait for the connection");
 
-            while(true){
+            while (true) {
                 Socket socket = null;
-                while(socket == null){
+                while (socket == null) {
                     socket = serverSocket.accept();
                 }
                 (new ClientThread(socket)).start();
             }
 
-        } catch (IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex);
         }
 

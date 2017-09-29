@@ -14,8 +14,8 @@ public class LobbyHandlerMessage implements HandlerMessage {
 
         String name = message.getName();
 
-        if(isNameNotExist(name)){
-            if(checkName(message.getText())){
+        if (isNameNotExist(name)) {
+            if (checkName(message.getText())) {
                 reply.setText("Success");
                 reply.setSuccess(true);
                 return reply;
@@ -36,19 +36,19 @@ public class LobbyHandlerMessage implements HandlerMessage {
 
     }
 
-    private boolean checkName(String name){
-        if(!UserRegistry.getInstance().checkKey(name)){
+    private boolean checkName(String name) {
+        if (!UserRegistry.getInstance().checkKey(name)) {
             return true;
         } else {
             return false;
         }
     }
 
-    private boolean isNameNotExist(String name){
+    private boolean isNameNotExist(String name) {
 
         User user = UserRegistry.getInstance().getElement(name);
 
-        if(user == null){
+        if (user == null) {
             return true;
         } else {
             return false;
@@ -56,12 +56,12 @@ public class LobbyHandlerMessage implements HandlerMessage {
 
     }
 
-    private String executeCommand(String nameUser1, String text){
+    private String executeCommand(String nameUser1, String text) {
 
         String[] splitCommand = text.split(" ");
         Command command;
 
-        switch (splitCommand[0]){
+        switch (splitCommand[0]) {
             case "lobby":
 
                 command = new ShowUsersExpectGameCommand();

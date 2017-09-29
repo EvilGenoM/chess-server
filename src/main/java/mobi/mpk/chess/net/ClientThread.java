@@ -23,24 +23,24 @@ public class ClientThread extends Thread {
     private User user;
     private HandlerMessage controller;
 
-    public ClientThread(Socket socket){
+    public ClientThread(Socket socket) {
 
         controller = new LobbyHandlerMessage();
         this.socket = socket;
 
     }
 
-    public void run(){
+    public void run() {
 
         Sender sender = new Sender();
-        try{
+        try {
             DataInputStream in = new DataInputStream(this.socket.getInputStream());
             DataOutputStream out = new DataOutputStream(this.socket.getOutputStream());
 
             Gson gson = new Gson();
             String line;
 
-            while(true){
+            while (true) {
 
                 line = in.readUTF();
                 GsonMessage message = gson.fromJson(line, GsonMessage.class);
@@ -49,7 +49,7 @@ public class ClientThread extends Thread {
 
                 Reply reply = controller.handleMessage(messageCreateUser);
 
-                if(reply.getSuccess()){
+                if (reply.getSuccess()) {
                     user = new User(message.text);
                     UserRegistry.getInstance().addElement(user.getName(), user);
                     UserRegistry.getInstance().addAdress(user, out);
@@ -63,7 +63,7 @@ public class ClientThread extends Thread {
 
             ManagerMessage manager = new ManagerMessage(user.getName());
 
-            while(true){
+            while (true) {
 
                 line = in.readUTF();
                 GsonMessage message = gson.fromJson(line, GsonMessage.class);

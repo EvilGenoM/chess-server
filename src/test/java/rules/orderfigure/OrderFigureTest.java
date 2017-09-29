@@ -1,4 +1,4 @@
-package orderfigure;
+package rules.orderfigure;
 
 import mobi.mpk.chess.domain.Board;
 import mobi.mpk.chess.domain.Cell;

@@ -10,7 +10,7 @@ public class JoinMessage extends Message {
 
         String[] textCommand = text.split(" ");
 
-        if(textCommand[0].equals("join")){
+        if (textCommand[0].equals("join")) {
             this.text = text;
             return true;
         } else {

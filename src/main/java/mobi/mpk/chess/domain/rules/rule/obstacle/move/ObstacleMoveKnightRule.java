@@ -16,13 +16,13 @@ public class ObstacleMoveKnightRule implements ObstacleMoveRule {
 
         Figure figure = stroke.getFigure();
 
-        if(!figure.equals(new Knight())){
+        if (!figure.equals(new Knight())) {
             return false;
         }
 
-        if(to.getFigure() == null){
+        if (to.getFigure() == null) {
             return true;
-        } else if(to.getFigure().getColor() != figure.getColor()){
+        } else if (to.getFigure().getColor() != figure.getColor()) {
             return true;
         } else {
             return false;

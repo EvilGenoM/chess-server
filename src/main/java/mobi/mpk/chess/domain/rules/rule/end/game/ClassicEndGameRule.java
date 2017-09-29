@@ -11,12 +11,12 @@ public class ClassicEndGameRule implements EndGameRule {
     @Override
     public boolean checkRule(Board board) {
 
-        if(!board.existFigure(new King(Color.white))){
+        if (!board.existFigure(new King(Color.white))) {
 
             colorWinner = Color.black;
             return true;
 
-        } else if(!board.existFigure(new King(Color.black))){
+        } else if (!board.existFigure(new King(Color.black))) {
 
             colorWinner = Color.white;
             return true;

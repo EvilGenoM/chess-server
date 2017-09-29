@@ -10,7 +10,7 @@ public abstract class Registry<K, V> {
 
     public void addElement(K key, V value) {
 
-        if(key != null) {
+        if (key != null) {
             this.value.putIfAbsent(key, value);
         }
 
@@ -40,7 +40,7 @@ public abstract class Registry<K, V> {
 
     }
 
-    public void clear(){
+    public void clear() {
         value.clear();
     }
 

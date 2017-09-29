@@ -1,4 +1,4 @@
-package possiblemove;
+package rules.possiblemove;
 
 import mobi.mpk.chess.domain.Board;
 import mobi.mpk.chess.domain.Cell;

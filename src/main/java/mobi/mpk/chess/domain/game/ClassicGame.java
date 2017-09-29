@@ -25,7 +25,7 @@ public class ClassicGame extends Game {
 
     }
 
-    public ClassicGame(Player player1, Player player2){
+    public ClassicGame(Player player1, Player player2) {
 
         this(player1, player2, new ClassicInspectorRules());
 
@@ -44,15 +44,15 @@ public class ClassicGame extends Game {
 
     }
 
-    private void putWhiteFigures(Cell[][] cells, List<Figure> orderFigures){
+    private void putWhiteFigures(Cell[][] cells, List<Figure> orderFigures) {
 
         int x = 0;
         int y = 0;
 
-        for(Figure figure : orderFigures){
+        for (Figure figure : orderFigures) {
             cells[x][y].setFigure(figure);
             x++;
-            if(x == 8){
+            if (x == 8) {
                 x = 0;
                 y++;
             }
@@ -60,15 +60,15 @@ public class ClassicGame extends Game {
 
     }
 
-    private void putBlackFigures(Cell[][] cells, List<Figure> orderFigures){
+    private void putBlackFigures(Cell[][] cells, List<Figure> orderFigures) {
 
         int x = 0;
         int y = 7;
 
-        for(Figure figure : orderFigures){
+        for (Figure figure : orderFigures) {
             cells[x][y].setFigure(figure);
             x++;
-            if(x == 8){
+            if (x == 8) {
                 x = 0;
                 y--;
             }
@@ -79,12 +79,12 @@ public class ClassicGame extends Game {
     @Override
     public ResultStroke doStroke(Player player, String strokeStr) {
 
-        try{
+        try {
 
             Stroke stroke = new Stroke(strokeStr);
             stroke.findFigure(getBoard());
 
-            if(player.getColorFigures() == nowStroke){
+            if (player.getColorFigures() == nowStroke) {
 
                 player.move(stroke, getBoard(), getInspectorRules());
                 nextStroke();
@@ -100,11 +100,11 @@ public class ClassicGame extends Game {
             return new ResultStroke("Incorrect move entered", false);
         } catch (FigureNotFindException e) {
             return new ResultStroke("This cell does not have a shape", false);
-        } catch (FigureCanNotMoveException e){
+        } catch (FigureCanNotMoveException e) {
             return new ResultStroke("The figure does not know how to walk like that", false);
-        } catch (PossibleMoveException e){
+        } catch (PossibleMoveException e) {
             return new ResultStroke("This cell does not have your shape", false);
-        } catch (WayFigureHaveObstaclesException e){
+        } catch (WayFigureHaveObstaclesException e) {
             return new ResultStroke("The movement of the figure is prevented by other figures", false);
         } catch (Exception e) {
             return new ResultStroke("Exception", false);
@@ -112,9 +112,9 @@ public class ClassicGame extends Game {
 
     }
 
-    private void nextStroke(){
+    private void nextStroke() {
 
-        if(nowStroke == Color.white){
+        if (nowStroke == Color.white) {
             nowStroke = Color.black;
         } else {
             nowStroke = Color.white;
@@ -122,14 +122,14 @@ public class ClassicGame extends Game {
 
     }
 
-    public List<Figure> getListFiguresOnBoard(){
+    public List<Figure> getListFiguresOnBoard() {
 
         List<Figure> board = new LinkedList<Figure>();
 
         Cell[][] cells = getBoard().getMassiveCell();
-        for(int y = 0; y<8; y++){
+        for (int y = 0; y < 8; y++) {
 
-            for (int x = 0; x<8; x++){
+            for (int x = 0; x < 8; x++) {
                 board.add(cells[x][y].getFigure());
             }
 

@@ -13,27 +13,27 @@ public class StrokeBishopRule implements StrokeFigureRule {
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();
 
-        if(!stroke.getFigure().equals(new Bishop())){
+        if (!stroke.getFigure().equals(new Bishop())) {
             return false;
         }
 
         boolean isStroke = true;
 
-        if(Math.abs(from.getX()-to.getX()) == Math.abs(from.getY()-to.getY())){
+        if (Math.abs(from.getX() - to.getX()) == Math.abs(from.getY() - to.getY())) {
 
-            if(from.getX()-to.getX()<0 && from.getY()-to.getY()<0){ //up right
-
-               return isStroke;
-
-            } else if(from.getX()-to.getX()>0 && from.getY()-to.getY()<0){ //up left
+            if (from.getX() - to.getX() < 0 && from.getY() - to.getY() < 0) { //up right
 
                 return isStroke;
 
-            } else if(from.getX()-to.getX()<0 && from.getY()-to.getY()>0){ // down right
+            } else if (from.getX() - to.getX() > 0 && from.getY() - to.getY() < 0) { //up left
 
                 return isStroke;
 
-            } else if(from.getX()-to.getX()>0 && from.getY()-to.getY()>0){ // down left
+            } else if (from.getX() - to.getX() < 0 && from.getY() - to.getY() > 0) { // down right
+
+                return isStroke;
+
+            } else if (from.getX() - to.getX() > 0 && from.getY() - to.getY() > 0) { // down left
 
                 return isStroke;
 

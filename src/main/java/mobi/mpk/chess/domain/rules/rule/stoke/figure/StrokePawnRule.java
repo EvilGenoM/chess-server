@@ -15,7 +15,7 @@ public class StrokePawnRule implements StrokeFigureRule {
         Cell to = stroke.getTo();
         Figure figure = stroke.getFigure();
 
-        if(!stroke.getFigure().equals(new Pawn())){
+        if (!stroke.getFigure().equals(new Pawn())) {
             return false;
         }
 
@@ -77,7 +77,7 @@ public class StrokePawnRule implements StrokeFigureRule {
 
             } else if (to.getX() - from.getX() == -1 && to.getY() - from.getY() == -1) { //left
 
-                    return isStroke;
+                return isStroke;
 
             }
         }

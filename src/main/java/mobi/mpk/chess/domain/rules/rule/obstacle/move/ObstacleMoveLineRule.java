@@ -23,13 +23,13 @@ public class ObstacleMoveLineRule implements ObstacleMoveRule {
 
         Figure figure = stroke.getFigure();
 
-        if(figure.equals(new Pawn()) || figure.equals(new Knight())){
+        if (figure.equals(new Pawn()) || figure.equals(new Knight())) {
             return isCheck;
         }
 
-        if(from.getY() - to.getY() == 0){
+        if (from.getY() - to.getY() == 0) {
             return checkHorizontWayFigure(from, to, figure, board);
-        } else if(from.getX() - to.getX() == 0){
+        } else if (from.getX() - to.getX() == 0) {
             return checkVerticalWayFigure(from, to, figure, board);
         } else {
             return isCheck;
@@ -37,21 +37,21 @@ public class ObstacleMoveLineRule implements ObstacleMoveRule {
 
     }
 
-    private boolean checkHorizontWayFigure(Cell from, Cell to, Figure figure, Board board){
+    private boolean checkHorizontWayFigure(Cell from, Cell to, Figure figure, Board board) {
 
         char fromX = from.getX();
         int fromY = from.getY();
 
         char toX = to.getX();
 
-        int changeX = (toX-fromX)/Math.abs(toX-fromX);
+        int changeX = (toX - fromX) / Math.abs(toX - fromX);
 
-        while(fromX != toX){
+        while (fromX != toX) {
 
             fromX += changeX;
 
             Cell cell = board.getCell(fromX, fromY);
-            if(fromX != toX && cell.getFigure() != null){
+            if (fromX != toX && cell.getFigure() != null) {
                 return false;
             }
 
@@ -61,22 +61,22 @@ public class ObstacleMoveLineRule implements ObstacleMoveRule {
 
     }
 
-    private boolean checkVerticalWayFigure(Cell from, Cell to, Figure figure, Board board){
+    private boolean checkVerticalWayFigure(Cell from, Cell to, Figure figure, Board board) {
 
         char fromX = from.getX();
         int fromY = from.getY();
 
         int toY = to.getY();
 
-        int changeY = (toY-fromY)/Math.abs(toY-fromY);
+        int changeY = (toY - fromY) / Math.abs(toY - fromY);
 
-        while(fromY != toY){
+        while (fromY != toY) {
 
             fromY += changeY;
 
             Cell cell = board.getCell(fromX, fromY);
 
-            if(fromY != toY && cell.getFigure() != null){
+            if (fromY != toY && cell.getFigure() != null) {
                 return false;
             }
 
@@ -86,11 +86,11 @@ public class ObstacleMoveLineRule implements ObstacleMoveRule {
 
     }
 
-    private boolean checkCellTo(Figure figureFrom, Figure figureTo){
+    private boolean checkCellTo(Figure figureFrom, Figure figureTo) {
 
-        if(figureTo == null){
+        if (figureTo == null) {
             return true;
-        } else if(figureTo.getColor() != figureFrom.getColor()){
+        } else if (figureTo.getColor() != figureFrom.getColor()) {
             return true;
         } else {
             return false;

@@ -8,7 +8,7 @@ public class ExpectMessage extends Message {
 
     public boolean setText(String text) {
 
-        if(text.equals("expect")){
+        if (text.equals("expect")) {
             this.text = text;
             return true;
         } else {

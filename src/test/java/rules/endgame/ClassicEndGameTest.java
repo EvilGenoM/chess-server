@@ -1,4 +1,4 @@
-package endgame;
+package rules.endgame;
 
 import mobi.mpk.chess.domain.Board;
 import mobi.mpk.chess.domain.Cell;

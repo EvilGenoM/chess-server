@@ -15,7 +15,7 @@ public class ShowUsersAppCommand implements Command {
         List<User> users = registry.getListElement();
         String resultCommand = "List all users:";
 
-        for(User user: users){
+        for (User user : users) {
             resultCommand += "\n" + user.getName();
         }
 

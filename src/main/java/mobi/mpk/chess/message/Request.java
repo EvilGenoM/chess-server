@@ -5,7 +5,7 @@ public class Request {
     public String name;
     public String text;
 
-    public Request(){
+    public Request() {
 
     }
 

@@ -60,7 +60,7 @@ public class Stroke {
         Cell from = board.getCell(this.from);
         Figure figure = from.getFigure();
 
-        if(figure == null){
+        if (figure == null) {
             throw new FigureNotFindException();
         } else {
             this.figure = figure;

@@ -13,7 +13,7 @@ public class ShowUsersExpectGameCommand implements Command {
 
         String resultCommand = "List users want playing:";
 
-        for(User user: waitingList.getListUser()){
+        for (User user : waitingList.getListUser()) {
             resultCommand += "\n" + user.getName();
         }
 

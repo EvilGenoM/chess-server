@@ -8,7 +8,7 @@ public class CheckNameMessage extends Message {
 
     @Override
     public boolean setText(String text) {
-        this.text = "checkName "+text;
+        this.text = "checkName " + text;
         return true;
     }
 

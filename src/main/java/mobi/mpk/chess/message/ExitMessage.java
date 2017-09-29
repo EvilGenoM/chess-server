@@ -8,7 +8,7 @@ public class ExitMessage extends Message {
 
     public boolean setText(String text) {
 
-        if(text.equals("exit")){
+        if (text.equals("exit")) {
             this.text = text;
             return true;
         } else {

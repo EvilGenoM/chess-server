@@ -13,7 +13,7 @@ public class Sender {
     public void send(Reply reply) throws IOException {
 
         UserRegistry registry = UserRegistry.getInstance();
-        for(User user : reply.getUser()) {
+        for (User user : reply.getUser()) {
             DataOutputStream out = registry.getAdress(user);
 
             Gson gson = new Gson();

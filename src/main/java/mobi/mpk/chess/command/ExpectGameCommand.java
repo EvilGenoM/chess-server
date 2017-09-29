@@ -8,7 +8,7 @@ public class ExpectGameCommand implements Command {
 
     private User user;
 
-    public ExpectGameCommand(String userName){
+    public ExpectGameCommand(String userName) {
 
         User user = UserRegistry.getInstance().getElement(userName);
         this.user = user;
@@ -18,7 +18,7 @@ public class ExpectGameCommand implements Command {
     @Override
     public String execute() {
 
-        if(user == null){
+        if (user == null) {
             return "Error";
         } else {
             ClassicWaitingList.getInstance().addUser(this.user);

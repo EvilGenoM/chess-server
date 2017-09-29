@@ -16,39 +16,39 @@ public class StrokeKnightRule implements StrokeFigureRule {
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();
 
-        if(!stroke.getFigure().equals(new Knight())){
+        if (!stroke.getFigure().equals(new Knight())) {
             return false;
         }
 
-        if(from.getX()-to.getX() == 1){
+        if (from.getX() - to.getX() == 1) {
 
-            if(from.getY()-to.getY() == 2){
+            if (from.getY() - to.getY() == 2) {
                 return true;
-            } else if(from.getY()-to.getY() == -2){
-                return true;
-            }
-
-        }else if(from.getX()-to.getX() == -1){
-
-            if(from.getY()-to.getY() == 2){
-                return true;
-            } else if(from.getY()-to.getY() == -2){
+            } else if (from.getY() - to.getY() == -2) {
                 return true;
             }
 
-        }else if(from.getY()-to.getY() == 1){
+        } else if (from.getX() - to.getX() == -1) {
 
-            if(from.getX()-to.getX() == 2){
+            if (from.getY() - to.getY() == 2) {
                 return true;
-            } else if(from.getX()-to.getX() == -2){
+            } else if (from.getY() - to.getY() == -2) {
                 return true;
             }
 
-        }else if(from.getY()-to.getY() == -1){
+        } else if (from.getY() - to.getY() == 1) {
 
-            if(from.getX()-to.getX() == 2){
+            if (from.getX() - to.getX() == 2) {
                 return true;
-            } else if(from.getX()-to.getX() == -2){
+            } else if (from.getX() - to.getX() == -2) {
+                return true;
+            }
+
+        } else if (from.getY() - to.getY() == -1) {
+
+            if (from.getX() - to.getX() == 2) {
+                return true;
+            } else if (from.getX() - to.getX() == -2) {
                 return true;
             }
 

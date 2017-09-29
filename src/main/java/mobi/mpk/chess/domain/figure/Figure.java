@@ -6,11 +6,11 @@ public abstract class Figure {
 
     private Color color;
 
-    public Figure(){
+    public Figure() {
         this(Color.white);
     }
 
-    public Figure(Color color){
+    public Figure(Color color) {
         this.color = color;
     }
 
@@ -19,13 +19,13 @@ public abstract class Figure {
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
 
-        if(this == null || o == null){
+        if (this == null || o == null) {
             return false;
         }
 
-        if(this.getClass().getSimpleName().equals(o.getClass().getSimpleName())){
+        if (this.getClass().getSimpleName().equals(o.getClass().getSimpleName())) {
 
             return true;
 

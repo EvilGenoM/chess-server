@@ -15,7 +15,7 @@ public class GameHandlerMessage implements HandlerMessage {
     private Player player1;
     private Player player2;
 
-    public GameHandlerMessage(User user1, User user2){
+    public GameHandlerMessage(User user1, User user2) {
 
         this.player1 = new Player(user1);
         this.player2 = new Player(user2);
@@ -38,10 +38,10 @@ public class GameHandlerMessage implements HandlerMessage {
         return reply;
     }
 
-    private Player getPlayer(User user){
+    private Player getPlayer(User user) {
 
         User user1 = this.player1.getUser();
-        if(user1.equals(user)){
+        if (user1.equals(user)) {
             return this.player1;
         } else {
             return this.player2;
@@ -49,11 +49,11 @@ public class GameHandlerMessage implements HandlerMessage {
 
     }
 
-    private Reply handleResultStroke(User user, ResultStroke resultStroke, String stroke){
+    private Reply handleResultStroke(User user, ResultStroke resultStroke, String stroke) {
 
         Reply reply;
 
-        if(resultStroke.isSuccess()){
+        if (resultStroke.isSuccess()) {
 
             reply = new Reply(user.getName());
             reply.setText(stroke);

@@ -10,7 +10,7 @@ public class JoinPlayerCommand implements Command {
     private User user1;
     private User user2;
 
-    public JoinPlayerCommand(String user1Name, String user2Name){
+    public JoinPlayerCommand(String user1Name, String user2Name) {
 
         User user = UserRegistry.getInstance().getElement(user1Name);
         this.user1 = user;
@@ -23,7 +23,7 @@ public class JoinPlayerCommand implements Command {
     @Override
     public String execute() {
 
-        if(this.user1 == null || this.user2 == null){
+        if (this.user1 == null || this.user2 == null) {
             return "Error";
         } else {
             GameHandlerMessage controllerGame = new GameHandlerMessage(user1, user2);

@@ -17,7 +17,7 @@ public abstract class Game {
     private InspectorRules inspectorRules;
     private Board board;
 
-    public Game(Player player1, Player player2, InspectorRules inspectorRules){
+    public Game(Player player1, Player player2, InspectorRules inspectorRules) {
 
         this.player1 = player1;
         this.player2 = player2;
@@ -43,19 +43,19 @@ public abstract class Game {
 
     public abstract List<Figure> getListFiguresOnBoard();
 
-    protected Player getPlayer1(){
+    protected Player getPlayer1() {
         return this.player1;
     }
 
-    protected Player getPlayer2(){
+    protected Player getPlayer2() {
         return this.player2;
     }
 
-    protected Board getBoard(){
+    protected Board getBoard() {
         return this.board;
     }
 
-    protected InspectorRules getInspectorRules(){
+    protected InspectorRules getInspectorRules() {
         return this.inspectorRules;
     }
 

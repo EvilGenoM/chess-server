@@ -9,15 +9,15 @@ public class Player {
     private User user;
     private Color colorFigures;
 
-    public Player(User user){
+    public Player(User user) {
         this.user = user;
     }
 
-    public User getUser(){
+    public User getUser() {
         return this.user;
     }
 
-    public void move(Stroke stroke, Board board, InspectorRules inspectorRules) throws Exception{
+    public void move(Stroke stroke, Board board, InspectorRules inspectorRules) throws Exception {
 
         inspectorRules.checkMoveRules(board, stroke, this.colorFigures);
 

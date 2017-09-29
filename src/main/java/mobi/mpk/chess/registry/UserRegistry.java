@@ -11,7 +11,7 @@ public class UserRegistry<K, E> extends Registry<K, E> {
     private static UserRegistry<String, User> instance;
     private ConcurrentMap<User, DataOutputStream> adressUser;
 
-    private UserRegistry(){
+    private UserRegistry() {
         value = new ConcurrentHashMap<K, E>();
         adressUser = new ConcurrentHashMap<User, DataOutputStream>();
     }
@@ -25,13 +25,13 @@ public class UserRegistry<K, E> extends Registry<K, E> {
         return instance;
     }
 
-    public void addAdress(User user, DataOutputStream out){
+    public void addAdress(User user, DataOutputStream out) {
 
         this.adressUser.putIfAbsent(user, out);
 
     }
 
-    public DataOutputStream getAdress(User user){
+    public DataOutputStream getAdress(User user) {
 
         return adressUser.get(user);
 

@@ -8,7 +8,7 @@ public class ShowUsersMessage extends Message {
 
     public boolean setText(String text) {
 
-        if(text.equals("show users")){
+        if (text.equals("show users")) {
             this.text = text;
             return true;
         } else {

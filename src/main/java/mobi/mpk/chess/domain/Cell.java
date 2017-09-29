@@ -23,11 +23,11 @@ public class Cell {
     public Cell(int x, int y) throws CellCorrectException {
 
         char symbolX = 'a';
-        for(int i = 0; i < x; i++){
+        for (int i = 0; i < x; i++) {
             ++symbolX;
         }
 
-        int numberY = y+1;
+        int numberY = y + 1;
 
         addXY(symbolX, numberY);
         this.figure = null;
@@ -36,31 +36,29 @@ public class Cell {
 
     private void addXY(char x, int y) throws CellCorrectException {
 
-        if(x >= 'a' && x <= 'h'){
+        if (x >= 'a' && x <= 'h') {
             this.x = x;
         } else throw new CellCorrectException();
 
-        if(y >= 1){
+        if (y >= 1) {
             this.y = y;
         } else throw new CellCorrectException();
 
     }
 
-    public void setFigure(Figure figure){
+    public void setFigure(Figure figure) {
         this.figure = figure;
     }
 
-    public Figure getFigure(){ return this.figure; }
-
-    public char getX() {
-        return x;
+    public Figure getFigure() {
+        return this.figure;
     }
 
-    public int getIntX(){
+    public int getIntX() {
 
         char symbol = 'a';
         int number = 1;
-        while(this.x != symbol){
+        while (this.x != symbol) {
             symbol++;
             number++;
         }
@@ -68,20 +66,23 @@ public class Cell {
         return number;
     }
 
+    public char getX() {
+        return x;
+    }
+
     public int getY() {
         return y;
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         Cell cell = (Cell) o;
-        if(this != null && cell != null && this.x == cell.getX() && this.y == cell.getY()){
+        if (this != null && cell != null && this.x == cell.getX() && this.y == cell.getY()) {
             return true;
         } else {
             return false;
         }
 
     }
-
 
 }

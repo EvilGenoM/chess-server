@@ -10,7 +10,7 @@ public class ManagerMessage {
 
     private List<Factory> factoryMessage = new ArrayList<Factory>();
 
-    public ManagerMessage(String name){
+    public ManagerMessage(String name) {
 
         factoryMessage.add(new ExitMessageFactory(name));
         factoryMessage.add(new ExpectMessageFactory(name));
@@ -23,11 +23,11 @@ public class ManagerMessage {
 
     public Message getMessage(String text) throws MessageErrorException {
 
-        for(Factory factory: factoryMessage){
+        for (Factory factory : factoryMessage) {
 
             Message message = factory.methodFactory();
 
-            if(message.setText(text)){
+            if (message.setText(text)) {
                 return message;
             }
 

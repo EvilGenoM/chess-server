@@ -23,11 +23,11 @@ public class ObstacleMoveDiagonalRule implements ObstacleMoveRule {
 
         Figure figure = stroke.getFigure();
 
-        if(figure.equals(new Pawn()) || figure.equals(new Knight())){
+        if (figure.equals(new Pawn()) || figure.equals(new Knight())) {
             return isCheck;
         }
 
-        if(Math.abs(from.getX()-to.getX()) == Math.abs(from.getY()-to.getY())){
+        if (Math.abs(from.getX() - to.getX()) == Math.abs(from.getY() - to.getY())) {
 
             return checkDiagonalWayFigure(from, to, figure, board);
 
@@ -39,7 +39,7 @@ public class ObstacleMoveDiagonalRule implements ObstacleMoveRule {
 
     }
 
-    private boolean checkDiagonalWayFigure(Cell from, Cell to, Figure figure, Board board){
+    private boolean checkDiagonalWayFigure(Cell from, Cell to, Figure figure, Board board) {
 
         char fromX = from.getX();
         int fromY = from.getY();
@@ -47,17 +47,17 @@ public class ObstacleMoveDiagonalRule implements ObstacleMoveRule {
         char toX = to.getX();
         int toY = to.getY();
 
-        int changeX = (toX-fromX)/Math.abs(toX-fromX);
-        int changeY = (toY-fromY)/Math.abs(toY-fromY);
+        int changeX = (toX - fromX) / Math.abs(toX - fromX);
+        int changeY = (toY - fromY) / Math.abs(toY - fromY);
 
-        while(fromX != toX){
+        while (fromX != toX) {
 
             fromX += changeX;
             fromY += changeY;
 
             Cell cell = board.getCell(fromX, fromY);
 
-            if(fromY != toY && cell.getFigure() != null){
+            if (fromY != toY && cell.getFigure() != null) {
                 return false;
             }
 
@@ -69,9 +69,9 @@ public class ObstacleMoveDiagonalRule implements ObstacleMoveRule {
 
     private boolean checkCellTo(Figure figureFrom, Figure figureTo) {
 
-        if(figureTo == null){
+        if (figureTo == null) {
             return true;
-        } else if(figureTo.getColor() != figureFrom.getColor()){
+        } else if (figureTo.getColor() != figureFrom.getColor()) {
             return true;
         } else {
             return false;

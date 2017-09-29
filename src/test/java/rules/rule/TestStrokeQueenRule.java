@@ -1,4 +1,4 @@
-package figure.stroke.rule;
+package rules.rule;
 
 import mobi.mpk.chess.domain.Board;
 import mobi.mpk.chess.domain.Cell;
@@ -7,58 +7,41 @@ import mobi.mpk.chess.domain.Stroke;
 import mobi.mpk.chess.domain.exception.CellCorrectException;
 import mobi.mpk.chess.domain.exception.FigureNotFindException;
 import mobi.mpk.chess.domain.exception.StrokeCorrectException;
-import mobi.mpk.chess.domain.figure.Pawn;
+import mobi.mpk.chess.domain.figure.Queen;
 import mobi.mpk.chess.domain.rules.rule.stoke.figure.StrokeFigureRule;
-import mobi.mpk.chess.domain.rules.rule.stoke.figure.StrokePawnRule;
+import mobi.mpk.chess.domain.rules.rule.stoke.figure.StrokeQueenRule;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestStrokePawnRule {
+public class TestStrokeQueenRule {
 
     private Board board;
 
     @Before
-    public void before(){
+    public void before() throws CellCorrectException {
 
-        try {
-            board = new Board();
+        board = new Board();
 
-            Cell cell = new Cell('a',2);
-            cell = board.getCell(cell);
+        Cell cell = new Cell('a',1);
+        cell = board.getCell(cell);
+        cell.setFigure(new Queen(Color.white));
 
-            cell.setFigure(new Pawn(Color.white));
-
-            cell = new Cell('b',1);
-            cell = board.getCell(cell);
-
-            cell.setFigure(new Pawn(Color.white));
-
-            cell = new Cell('a',7);
-            cell = board.getCell(cell);
-
-            cell.setFigure(new Pawn(Color.black));
-
-            cell = new Cell('b',8);
-            cell = board.getCell(cell);
-
-            cell.setFigure(new Pawn(Color.black));
-
-        } catch (CellCorrectException e) {
-            e.printStackTrace();
-        }
+        cell = new Cell('e',4);
+        cell = board.getCell(cell);
+        cell.setFigure(new Queen(Color.white));
 
     }
 
     @Test
-    public void testA2A4(){
+    public void testA1B2(){
 
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
+        StrokeFigureRule strokeFigureRule = new StrokeQueenRule();
 
         Stroke stroke = null;
         try {
-            stroke = new Stroke("a2 a4");
+            stroke = new Stroke("a1 b2");
             stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
@@ -74,13 +57,13 @@ public class TestStrokePawnRule {
     }
 
     @Test
-    public void testA2A3(){
+    public void testA1A2(){
 
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
+        StrokeFigureRule strokeFigureRule = new StrokeQueenRule();
 
         Stroke stroke = null;
         try {
-            stroke = new Stroke("a2 a3");
+            stroke = new Stroke("a1 a2");
             stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
@@ -96,13 +79,13 @@ public class TestStrokePawnRule {
     }
 
     @Test
-    public void testA2B3(){
+    public void testA1B1(){
 
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
+        StrokeFigureRule strokeFigureRule = new StrokeQueenRule();
 
         Stroke stroke = null;
         try {
-            stroke = new Stroke("a2 b3");
+            stroke = new Stroke("a1 b1");
             stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
@@ -118,13 +101,13 @@ public class TestStrokePawnRule {
     }
 
     @Test
-    public void testB1B2(){
+    public void testE4B2(){
 
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
+        StrokeFigureRule strokeFigureRule = new StrokeQueenRule();
 
         Stroke stroke = null;
         try {
-            stroke = new Stroke("b1 b2");
+            stroke = new Stroke("e4 b1");
             stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
@@ -140,13 +123,13 @@ public class TestStrokePawnRule {
     }
 
     @Test
-    public void testB1A2(){
+    public void testE4H1(){
 
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
+        StrokeFigureRule strokeFigureRule = new StrokeQueenRule();
 
         Stroke stroke = null;
         try {
-            stroke = new Stroke("b1 a2");
+            stroke = new Stroke("e4 h1");
             stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
@@ -162,13 +145,13 @@ public class TestStrokePawnRule {
     }
 
     @Test
-    public void testB1C2(){
+    public void testE4H7(){
 
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
+        StrokeFigureRule strokeFigureRule = new StrokeQueenRule();
 
         Stroke stroke = null;
         try {
-            stroke = new Stroke("b1 c2");
+            stroke = new Stroke("e4 h7");
             stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
@@ -184,35 +167,13 @@ public class TestStrokePawnRule {
     }
 
     @Test
-    public void testB1B3(){
+    public void testE4B7(){
 
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
-
-        Stroke stroke = null;
-        try {
-            stroke = new Stroke("b1 b3");
-            stroke.findFigure(board);
-        } catch (CellCorrectException e) {
-            e.printStackTrace();
-        } catch (StrokeCorrectException e) {
-            e.printStackTrace();
-        } catch (FigureNotFindException e) {
-            e.printStackTrace();
-        }
-        boolean resultStroke = strokeFigureRule.checkRule(stroke);
-
-        assertEquals(resultStroke, false);
-
-    }
-
-    @Test
-    public void testA7A5(){
-
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
+        StrokeFigureRule strokeFigureRule = new StrokeQueenRule();
 
         Stroke stroke = null;
         try {
-            stroke = new Stroke("a7 a5");
+            stroke = new Stroke("e4 b7");
             stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
@@ -228,13 +189,13 @@ public class TestStrokePawnRule {
     }
 
     @Test
-    public void testA7A6(){
+    public void testE4E8(){
 
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
+        StrokeFigureRule strokeFigureRule = new StrokeQueenRule();
 
         Stroke stroke = null;
         try {
-            stroke = new Stroke("a7 a6");
+            stroke = new Stroke("e4 e8");
             stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
@@ -250,13 +211,13 @@ public class TestStrokePawnRule {
     }
 
     @Test
-    public void testA7B6(){
+    public void testE4E1(){
 
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
+        StrokeFigureRule strokeFigureRule = new StrokeQueenRule();
 
         Stroke stroke = null;
         try {
-            stroke = new Stroke("a7 b6");
+            stroke = new Stroke("e4 e1");
             stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
@@ -272,13 +233,13 @@ public class TestStrokePawnRule {
     }
 
     @Test
-    public void testB8B7(){
+    public void testE4A4(){
 
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
+        StrokeFigureRule strokeFigureRule = new StrokeQueenRule();
 
         Stroke stroke = null;
         try {
-            stroke = new Stroke("b8 b7");
+            stroke = new Stroke("e4 a4");
             stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
@@ -294,13 +255,13 @@ public class TestStrokePawnRule {
     }
 
     @Test
-    public void testB8A7(){
+    public void testE4H4(){
 
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
+        StrokeFigureRule strokeFigureRule = new StrokeQueenRule();
 
         Stroke stroke = null;
         try {
-            stroke = new Stroke("b8 a7");
+            stroke = new Stroke("e4 h4");
             stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();
@@ -316,79 +277,13 @@ public class TestStrokePawnRule {
     }
 
     @Test
-    public void testB8C7(){
+    public void testE4F6(){
 
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
-
-        Stroke stroke = null;
-        try {
-            stroke = new Stroke("b8 c7");
-            stroke.findFigure(board);
-        } catch (CellCorrectException e) {
-            e.printStackTrace();
-        } catch (StrokeCorrectException e) {
-            e.printStackTrace();
-        } catch (FigureNotFindException e) {
-            e.printStackTrace();
-        }
-        boolean resultStroke = strokeFigureRule.checkRule(stroke);
-
-        assertEquals(resultStroke, true);
-
-    }
-
-    @Test
-    public void testB8B6(){
-
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
+        StrokeFigureRule strokeFigureRule = new StrokeQueenRule();
 
         Stroke stroke = null;
         try {
-            stroke = new Stroke("b8 b6");
-            stroke.findFigure(board);
-        } catch (CellCorrectException e) {
-            e.printStackTrace();
-        } catch (StrokeCorrectException e) {
-            e.printStackTrace();
-        } catch (FigureNotFindException e) {
-            e.printStackTrace();
-        }
-        boolean resultStroke = strokeFigureRule.checkRule(stroke);
-
-        assertEquals(resultStroke, false);
-
-    }
-
-    @Test
-    public void testA7A8(){
-
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
-
-        Stroke stroke = null;
-        try {
-            stroke = new Stroke("a7 a8");
-            stroke.findFigure(board);
-        } catch (CellCorrectException e) {
-            e.printStackTrace();
-        } catch (StrokeCorrectException e) {
-            e.printStackTrace();
-        } catch (FigureNotFindException e) {
-            e.printStackTrace();
-        }
-        boolean resultStroke = strokeFigureRule.checkRule(stroke);
-
-        assertEquals(resultStroke, false);
-
-    }
-
-    @Test
-    public void testA2A1(){
-
-        StrokeFigureRule strokeFigureRule = new StrokePawnRule();
-
-        Stroke stroke = null;
-        try {
-            stroke = new Stroke("a2 a1");
+            stroke = new Stroke("e4 f6");
             stroke.findFigure(board);
         } catch (CellCorrectException e) {
             e.printStackTrace();

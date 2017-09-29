@@ -16,26 +16,26 @@ public class StrokeRookRule implements StrokeFigureRule {
         Cell from = stroke.getFrom();
         Cell to = stroke.getTo();
 
-        if(!stroke.getFigure().equals(new Rook())){
+        if (!stroke.getFigure().equals(new Rook())) {
             return false;
         }
 
 
         boolean isStroke = true;
 
-        if(from.getX()-to.getX()>0 && from.getY() == to.getY()){ // left
+        if (from.getX() - to.getX() > 0 && from.getY() == to.getY()) { // left
 
             return isStroke;
 
-        } else if(from.getX()-to.getX()<0 && from.getY() == to.getY()){ // right
+        } else if (from.getX() - to.getX() < 0 && from.getY() == to.getY()) { // right
 
             return isStroke;
 
-        } else if(from.getY()-to.getY()>0 && from.getX() == to.getX()){ // down
+        } else if (from.getY() - to.getY() > 0 && from.getX() == to.getX()) { // down
 
             return isStroke;
 
-        } else if(from.getY()-to.getY()<0 && from.getX() == to.getX()){ // up
+        } else if (from.getY() - to.getY() < 0 && from.getX() == to.getX()) { // up
 
             return isStroke;
 

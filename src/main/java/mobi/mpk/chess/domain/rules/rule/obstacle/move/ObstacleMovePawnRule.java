@@ -40,15 +40,15 @@ public class ObstacleMovePawnRule implements ObstacleMoveRule {
 
         int toY = to.getY();
 
-        int changeY = (toY-fromY)/Math.abs(toY-fromY);
+        int changeY = (toY - fromY) / Math.abs(toY - fromY);
 
-        while(fromY != toY){
+        while (fromY != toY) {
 
             fromY += changeY;
 
             Cell cell = board.getCell(fromX, fromY);
 
-            if(fromY != toY && cell.getFigure() != null){
+            if (fromY != toY && cell.getFigure() != null) {
                 return false;
             }
 
@@ -60,7 +60,7 @@ public class ObstacleMovePawnRule implements ObstacleMoveRule {
 
     private boolean checkCellToLine(Figure figureTo) {
 
-        if(figureTo == null){
+        if (figureTo == null) {
             return true;
         } else {
             return false;
@@ -76,17 +76,17 @@ public class ObstacleMovePawnRule implements ObstacleMoveRule {
         char toX = to.getX();
         int toY = to.getY();
 
-        int changeX = (toX-fromX)/Math.abs(toX-fromX);
-        int changeY = (toY-fromY)/Math.abs(toY-fromY);
+        int changeX = (toX - fromX) / Math.abs(toX - fromX);
+        int changeY = (toY - fromY) / Math.abs(toY - fromY);
 
-        while(fromX != toX){
+        while (fromX != toX) {
 
             fromX += changeX;
             fromY += changeY;
 
             Cell cell = board.getCell(fromX, fromY);
 
-            if(fromY != toY && cell.getFigure() != null){
+            if (fromY != toY && cell.getFigure() != null) {
                 return false;
             }
 
@@ -98,9 +98,9 @@ public class ObstacleMovePawnRule implements ObstacleMoveRule {
 
     private boolean checkCellToDiagonal(Figure figureFrom, Figure figureTo) {
 
-        if(figureTo == null){
+        if (figureTo == null) {
             return false;
-        } else if(figureFrom.getColor() != figureTo.getColor()){
+        } else if (figureFrom.getColor() != figureTo.getColor()) {
             return true;
         } else {
             return false;
