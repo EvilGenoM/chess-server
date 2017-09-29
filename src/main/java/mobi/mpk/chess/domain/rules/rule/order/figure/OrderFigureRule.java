@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface OrderFigureRule {
 
-    List<Figure> orderFigureRule(Color color);
+    List<Figure> orderFigure(Color color);
 
 }

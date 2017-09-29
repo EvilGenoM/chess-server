@@ -22,7 +22,9 @@ public abstract class Figure {
     public boolean equals(Object o){
 
         if(this.getClass().getSimpleName().equals(o.getClass().getSimpleName())){
+
             return true;
+
         } else {
             return false;
         }

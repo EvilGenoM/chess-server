@@ -2,6 +2,7 @@ package mobi.mpk.chess.domain;
 
 
 import mobi.mpk.chess.domain.exception.CellCorrectException;
+import mobi.mpk.chess.domain.figure.Figure;
 
 public class Board {
 
@@ -11,34 +12,36 @@ public class Board {
 
         cells = new Cell[8][8];
 
-        for(int x = 0; x < 8; x++){
+        for (int x = 0; x < 8; x++) {
 
-            for (int y = 0; y < 8; y++){
-                cells[x][y] = new Cell(x,y);
+            for (int y = 0; y < 8; y++) {
+                cells[x][y] = new Cell(x, y);
             }
 
         }
 
     }
 
-    public Cell[][] getMassiveCell(){ return cells; }
+    public Cell[][] getMassiveCell() {
+        return cells;
+    }
 
-    public Cell getCell(Cell cell){
+    public Cell getCell(Cell cell) {
 
-        int x = cell.getIntX()-1;
-        int y = cell.getY()-1;
+        int x = cell.getIntX() - 1;
+        int y = cell.getY() - 1;
 
         return this.cells[x][y];
     }
 
-    public Cell getCell(char letter, int number){
+    public Cell getCell(char letter, int number) {
 
 
-        if(letter < 'a' || letter > 'h'){
+        if (letter < 'a' || letter > 'h') {
             return null;
         }
 
-        if(number < 1 || number > 8){
+        if (number < 1 || number > 8) {
             return null;
         }
 
@@ -47,6 +50,28 @@ public class Board {
 
 
         return this.cells[x][y];
+    }
+
+    public boolean existFigure(Figure figure) {
+
+        for (int y = 0; y < 8; y++) {
+
+            for (int x = 0; x < 8; x++) {
+
+                if (cells[x][y].getFigure() != null && cells[x][y].getFigure().equals(figure)) {
+
+                    if (cells[x][y].getFigure().getColor() == figure.getColor()) {
+                        return true;
+                    }
+
+                }
+
+            }
+
+        }
+
+        return false;
+
     }
 
 
