@@ -6,7 +6,10 @@ import mobi.mpk.chess.domain.Stroke;
 import mobi.mpk.chess.domain.exception.rule.FigureCanNotMoveException;
 import mobi.mpk.chess.domain.exception.rule.PossibleMoveException;
 import mobi.mpk.chess.domain.exception.rule.WayFigureHaveObstaclesException;
+import mobi.mpk.chess.domain.figure.Figure;
 import mobi.mpk.chess.domain.rules.rule.obstacle.move.*;
+import mobi.mpk.chess.domain.rules.rule.order.figure.ClassicOrderFigureRule;
+import mobi.mpk.chess.domain.rules.rule.order.figure.OrderFigureRule;
 import mobi.mpk.chess.domain.rules.rule.possiblemove.ClassicPossibleMoveRule;
 import mobi.mpk.chess.domain.rules.rule.possiblemove.PossibleMoveRule;
 import mobi.mpk.chess.domain.rules.rule.stoke.figure.*;
@@ -14,12 +17,12 @@ import mobi.mpk.chess.domain.rules.rule.stoke.figure.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClassicInspectorRules implements InspectorRules{
+public class ClassicInspectorRules implements InspectorRules {
 
     List<StrokeFigureRule> strokeFigureRules;
     List<ObstacleMoveRule> obstacleMoveRules;
 
-    public ClassicInspectorRules(){
+    public ClassicInspectorRules() {
 
         strokeFigureRules = new ArrayList<>();
 
@@ -45,38 +48,46 @@ public class ClassicInspectorRules implements InspectorRules{
         stroke.findFigure(board);
 
         PossibleMoveRule possibleMoveRule = new ClassicPossibleMoveRule();
-        if(!possibleMoveRule.checkPossibleMove(colorPlayer, stroke)){
+        if (!possibleMoveRule.checkPossibleMove(colorPlayer, stroke)) {
             throw new PossibleMoveException();
         }
 
         boolean isCheckStrokeRule = false;
 
-        for(StrokeFigureRule rule : strokeFigureRules){
+        for (StrokeFigureRule rule : strokeFigureRules) {
 
-            if(rule.checkRule(stroke)){
+            if (rule.checkRule(stroke)) {
                 isCheckStrokeRule = true;
             }
 
         }
 
-        if(!isCheckStrokeRule){
+        if (!isCheckStrokeRule) {
             throw new FigureCanNotMoveException();
         }
 
         boolean isCheckObstacles = false;
 
-        for(ObstacleMoveRule rule : obstacleMoveRules){
+        for (ObstacleMoveRule rule : obstacleMoveRules) {
 
-            if(rule.checkRule(stroke, board)){
+            if (rule.checkRule(stroke, board)) {
                 isCheckObstacles = true;
             }
 
         }
 
-        if(!isCheckObstacles){
+        if (!isCheckObstacles) {
             throw new WayFigureHaveObstaclesException();
         }
 
+
+    }
+
+    @Override
+    public List<Figure> getOrderFigure(Color color) {
+
+        OrderFigureRule rule = new ClassicOrderFigureRule();
+        return rule.orderFigure(color);
 
     }
 

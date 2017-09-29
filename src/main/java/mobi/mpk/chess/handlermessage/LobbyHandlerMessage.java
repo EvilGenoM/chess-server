@@ -3,32 +3,45 @@ package mobi.mpk.chess.handlermessage;
 import mobi.mpk.chess.User;
 import mobi.mpk.chess.command.*;
 import mobi.mpk.chess.message.Message;
-import mobi.mpk.chess.message.ReplyMessage;
+import mobi.mpk.chess.message.Reply;
 import mobi.mpk.chess.registry.UserRegistry;
-
-import java.util.Date;
 
 public class LobbyHandlerMessage implements HandlerMessage {
 
-    public ReplyMessage handleMessage(Message message) {
+    public Reply handleMessage(Message message) {
 
-        ReplyMessage replyMessage = new ReplyMessage("Server");
+        Reply reply = new Reply("Server");
 
         String name = message.getName();
 
         if(isNameNotExist(name)){
-            replyMessage.setText("Error");
-            return replyMessage;
+            if(checkName(message.getText())){
+                reply.setText("Success");
+                reply.setSuccess(true);
+                return reply;
+            } else {
+                reply.setText("Error");
+                return reply;
+            }
         }
 
         String text = message.getText();
 
         String resultComand = executeCommand(name, text);
 
-        replyMessage.setText(resultComand);
+        reply.setText(resultComand);
+        reply.addUser(UserRegistry.getInstance().getElement(name));
 
-        return replyMessage;
+        return reply;
 
+    }
+
+    private boolean checkName(String name){
+        if(UserRegistry.getInstance().checkKey(name)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private boolean isNameNotExist(String name){

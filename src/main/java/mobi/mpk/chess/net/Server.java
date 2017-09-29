@@ -16,6 +16,7 @@ public class Server {
         try{
             ServerSocket serverSocket = new ServerSocket(this.port);
 
+            System.getProperty("java.class.path");
             Logger log = LogManager.getLogger("server");
             log.info("Wait for the connection");
 

@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class Config {
 
-    private static final String PROPERTIES_FILE = "../../server.properties";
+    private static final String PROPERTIES_FILE = "config.properties";
 
     public static int PORT;
 

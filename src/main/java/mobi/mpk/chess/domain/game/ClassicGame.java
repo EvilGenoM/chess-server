@@ -2,7 +2,11 @@ package mobi.mpk.chess.domain.game;
 
 import mobi.mpk.chess.domain.*;
 import mobi.mpk.chess.domain.exception.CellCorrectException;
+import mobi.mpk.chess.domain.exception.FigureNotFindException;
 import mobi.mpk.chess.domain.exception.StrokeCorrectException;
+import mobi.mpk.chess.domain.exception.rule.FigureCanNotMoveException;
+import mobi.mpk.chess.domain.exception.rule.PossibleMoveException;
+import mobi.mpk.chess.domain.exception.rule.WayFigureHaveObstaclesException;
 import mobi.mpk.chess.domain.figure.Figure;
 import mobi.mpk.chess.domain.rules.ClassicInspectorRules;
 import mobi.mpk.chess.domain.rules.InspectorRules;
@@ -32,11 +36,11 @@ public class ClassicGame extends Game {
 
         Cell[][] cells = getBoard().getMassiveCell();
 
-        //List<Figure> orderWhiteFigure = getInspectorRules().orderFigure(Color.white);
-        //putWhiteFigures(cells, orderWhiteFigure);
+        List<Figure> orderWhiteFigure = getInspectorRules().getOrderFigure(Color.white);
+        putWhiteFigures(cells, orderWhiteFigure);
 
-        //List<Figure> orderBlackFigure = getInspectorRules().orderFigure(Color.black);
-        //putBlackFigures(cells, orderBlackFigure);
+        List<Figure> orderBlackFigure = getInspectorRules().getOrderFigure(Color.black);
+        putBlackFigures(cells, orderBlackFigure);
 
     }
 
@@ -75,29 +79,37 @@ public class ClassicGame extends Game {
     @Override
     public ResultStroke doStroke(Player player, String strokeStr) {
 
-        if(player.getColorFigures() == nowStroke){
+        try{
 
-            try {
-                Stroke stroke = new Stroke(strokeStr);
-            } catch (CellCorrectException e) {
-                e.printStackTrace();
-            } catch (StrokeCorrectException e) {
-                e.printStackTrace();
+            Stroke stroke = new Stroke(strokeStr);
+            stroke.findFigure(getBoard());
+
+            if(player.getColorFigures() == nowStroke){
+
+                player.move(stroke, getBoard(), getInspectorRules());
+                nextStroke();
+                return new ResultStroke("Success move", true);
+
+            } else {
+                return new ResultStroke("Now is not your move", false);
             }
-            //ResultStroke resultStroke = player.move(stroke, getBoard(), getInspectorRules());
-            //if(resultStroke.isSuccess()){
-              //  nextStroke();
-            //}
 
-            //return resultStroke;
-
-        } else {
-
-            ResultStroke resultStroke = new ResultStroke("Not your move", false);
-            return resultStroke;
-
+        } catch (CellCorrectException e) {
+            return new ResultStroke("An incorrect cell is entered", false);
+        } catch (StrokeCorrectException e) {
+            return new ResultStroke("Incorrect move entered", false);
+        } catch (FigureNotFindException e) {
+            return new ResultStroke("This cell does not have a shape", false);
+        } catch (FigureCanNotMoveException e){
+            return new ResultStroke("The figure does not know how to walk like that", false);
+        } catch (PossibleMoveException e){
+            return new ResultStroke("This cell does not have your shape", false);
+        } catch (WayFigureHaveObstaclesException e){
+            return new ResultStroke("The movement of the figure is prevented by other figures", false);
+        } catch (Exception e) {
+            return new ResultStroke("Exception", false);
         }
-        return null;
+
     }
 
     private void nextStroke(){

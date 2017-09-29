@@ -34,6 +34,12 @@ public abstract class Registry<K, V> {
 
     }
 
+    public boolean checkKey(K key) {
+
+        return this.value.containsKey(key);
+
+    }
+
     public void clear(){
         value.clear();
     }

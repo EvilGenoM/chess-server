@@ -2,8 +2,14 @@ package mobi.mpk.chess.net;
 
 
 import com.google.gson.Gson;
+import mobi.mpk.chess.User;
+import mobi.mpk.chess.handlermessage.HandlerMessage;
+import mobi.mpk.chess.message.CheckNameMessage;
 import mobi.mpk.chess.message.ManagerMessage;
 import mobi.mpk.chess.message.Message;
+import mobi.mpk.chess.message.Reply;
+import mobi.mpk.chess.message.exception.MessageErrorException;
+import mobi.mpk.chess.registry.UserRegistry;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -13,6 +19,8 @@ import java.net.Socket;
 public class ClientThread extends Thread {
 
     private Socket socket;
+    private User user;
+    private HandlerMessage controller;
 
     public ClientThread(Socket socket){
 
@@ -33,14 +41,40 @@ public class ClientThread extends Thread {
             while(true){
 
                 line = in.readUTF();
-                Message message = gson.fromJson(line, Message.class);
+                GsonMessage message = gson.fromJson(line, GsonMessage.class);
+                Message messageCreateUser = new CheckNameMessage(message.name);
+                messageCreateUser.setText(message.text);
 
-//                ManagerMessage manager = new ManagerMessage(" ");
+                Reply reply = controller.handleMessage(messageCreateUser);
+
+                if(reply.getSuccess()){
+                    user = new User(message.text);
+                    UserRegistry.getInstance().addElement(user.getName(), user);
+                    out.writeUTF("Success");
+                    break;
+                }
+
+                out.writeUTF("Error");
+
+            }
+
+            ManagerMessage manager = new ManagerMessage(user.getName());
+
+            while(true){
+
+                line = in.readUTF();
+                GsonMessage message = gson.fromJson(line, GsonMessage.class);
+                Message messageRequest = manager.getMessage(message.text);
+
+                Reply reply = controller.handleMessage(messageRequest);
+                sender.send(reply);
 
             }
 
         } catch (IOException ex) {
             System.out.println(ex);
+        } catch (MessageErrorException e) {
+            e.printStackTrace();
         }
 
     }

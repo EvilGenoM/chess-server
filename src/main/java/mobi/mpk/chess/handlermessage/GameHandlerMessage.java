@@ -6,7 +6,7 @@ import mobi.mpk.chess.domain.ResultStroke;
 import mobi.mpk.chess.domain.game.ClassicGame;
 import mobi.mpk.chess.domain.game.Game;
 import mobi.mpk.chess.message.Message;
-import mobi.mpk.chess.message.ReplyMessage;
+import mobi.mpk.chess.message.Reply;
 import mobi.mpk.chess.registry.UserRegistry;
 
 public class GameHandlerMessage implements HandlerMessage {
@@ -25,7 +25,7 @@ public class GameHandlerMessage implements HandlerMessage {
     }
 
     @Override
-    public ReplyMessage handleMessage(Message message) {
+    public Reply handleMessage(Message message) {
 
         User user = UserRegistry.getInstance().getElement(message.getName());
         Player player = getPlayer(user);
@@ -33,10 +33,9 @@ public class GameHandlerMessage implements HandlerMessage {
         String stroke = message.getText();
         ResultStroke resultStroke = game.doStroke(player, stroke);
 
-        ReplyMessage replyMessage = handleResultStroke(resultStroke);
+        Reply reply = handleResultStroke(user, resultStroke, stroke);
 
-
-        return replyMessage;
+        return reply;
     }
 
     private Player getPlayer(User user){
@@ -50,8 +49,28 @@ public class GameHandlerMessage implements HandlerMessage {
 
     }
 
-    private ReplyMessage handleResultStroke(ResultStroke resultStroke){
-        return null;
+    private Reply handleResultStroke(User user, ResultStroke resultStroke, String stroke){
+
+        Reply reply;
+
+        if(resultStroke.isSuccess()){
+
+            reply = new Reply(user.getName());
+            reply.setText(stroke);
+            reply.addUser(player1.getUser());
+            reply.addUser(player2.getUser());
+
+            return reply;
+
+        } else {
+
+            reply = new Reply("Server");
+            reply.setText(resultStroke.getText());
+            reply.addUser(user);
+
+            return reply;
+        }
+
     }
 
 }
