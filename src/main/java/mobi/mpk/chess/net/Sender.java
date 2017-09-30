@@ -2,7 +2,7 @@ package mobi.mpk.chess.net;
 
 import com.google.gson.Gson;
 import mobi.mpk.chess.User;
-import mobi.mpk.chess.message.Reply;
+import mobi.mpk.chess.message.reply.Reply;
 import mobi.mpk.chess.registry.UserRegistry;
 
 import java.io.DataOutputStream;
@@ -17,7 +17,9 @@ public class Sender {
             DataOutputStream out = registry.getAdress(user);
 
             Gson gson = new Gson();
-            String gsonStr = gson.toJson(reply);
+            GsonMessage message = new GsonMessage(reply.getName(), reply.getText());
+
+            String gsonStr = gson.toJson(message);
 
             out.writeUTF(gsonStr);
         }

@@ -12,7 +12,7 @@ public class UserRegistry<K, E> extends Registry<K, E> {
     private ConcurrentMap<User, DataOutputStream> adressUser;
 
     private UserRegistry() {
-        value = new ConcurrentHashMap<K, E>();
+        values = new ConcurrentHashMap<K, E>();
         adressUser = new ConcurrentHashMap<User, DataOutputStream>();
     }
 
@@ -34,6 +34,12 @@ public class UserRegistry<K, E> extends Registry<K, E> {
     public DataOutputStream getAdress(User user) {
 
         return adressUser.get(user);
+
+    }
+
+    public void removeAdress(User user) {
+
+        adressUser.remove(user);
 
     }
 

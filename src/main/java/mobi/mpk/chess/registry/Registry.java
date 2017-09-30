@@ -6,49 +6,55 @@ import java.util.concurrent.ConcurrentMap;
 
 public abstract class Registry<K, V> {
 
-    protected ConcurrentMap<K, V> value;
+    protected ConcurrentMap<K, V> values;
 
     public void addElement(K key, V value) {
 
         if (key != null) {
-            this.value.putIfAbsent(key, value);
+            this.values.putIfAbsent(key, value);
         }
 
     }
 
-    public void deleteElement(K key) {
+    public void removeElement(K key) {
 
-        value.remove(key);
+        this.values.remove(key);
+
+    }
+
+    public void removeElementKey(K key) {
+
+        this.values.remove(key);
 
     }
 
     public V getElement(K key) {
 
-        return value.get(key);
+        return values.get(key);
 
     }
 
     public boolean checkElement(V value) {
 
-        return this.value.containsValue(value);
+        return this.values.containsValue(value);
 
     }
 
     public boolean checkKey(K key) {
 
-        return this.value.containsKey(key);
+        return this.values.containsKey(key);
 
     }
 
     public void clear() {
-        value.clear();
+        values.clear();
     }
 
     public List<V> getListElement() {
 
         List<V> list = new ArrayList<V>();
 
-        for (V value : value.values()) {
+        for (V value : values.values()) {
             list.add(value);
         }
 

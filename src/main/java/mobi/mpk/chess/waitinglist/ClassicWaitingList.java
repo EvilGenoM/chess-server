@@ -47,6 +47,13 @@ public class ClassicWaitingList implements WaitingList {
     }
 
     @Override
+    public boolean checkUser(User user) {
+
+        return users.containsValue(user);
+
+    }
+
+    @Override
     public List<User> getListUser() {
 
         List<User> list = new ArrayList<User>();

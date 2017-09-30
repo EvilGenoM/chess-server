@@ -10,7 +10,7 @@ public class GameRegistry<K, E> extends Registry<K, E> {
     private static GameRegistry<User, GameHandlerMessage> instance;
 
     private GameRegistry() {
-        value = new ConcurrentHashMap<K, E>();
+        values = new ConcurrentHashMap<K, E>();
     }
 
     public static GameRegistry<User, GameHandlerMessage> getInstance() {

@@ -19,7 +19,7 @@ public class ExpectGameCommand implements Command {
     public String execute() {
 
         if (user == null) {
-            return "Error";
+            return "Error your name";
         } else {
             ClassicWaitingList.getInstance().addUser(this.user);
         }

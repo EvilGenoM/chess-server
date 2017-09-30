@@ -1,4 +1,4 @@
-package mobi.mpk.chess.message;
+package mobi.mpk.chess.message.reply;
 
 
 import mobi.mpk.chess.User;
@@ -39,5 +39,13 @@ public class Reply {
 
     public void setSuccess(boolean success) {
         isSuccess = success;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public String getName() {
+        return name;
     }
 }

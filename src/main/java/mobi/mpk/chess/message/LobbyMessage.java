@@ -1,14 +1,14 @@
 package mobi.mpk.chess.message;
 
-public class ShowUsersMessage extends Message {
+public class LobbyMessage extends Message {
 
-    public ShowUsersMessage(String name) {
+    public LobbyMessage(String name) {
         super(name);
     }
 
     public boolean setText(String text) {
 
-        if (text.equals("show users")) {
+        if (text.equals("users")) {
             this.text = text;
             return true;
         } else {

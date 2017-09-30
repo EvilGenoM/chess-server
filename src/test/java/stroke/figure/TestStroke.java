@@ -7,6 +7,8 @@ import mobi.mpk.chess.domain.exception.StrokeCorrectException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class TestStroke {
 
@@ -25,6 +27,18 @@ public class TestStroke {
         } catch (StrokeCorrectException e) {
             e.printStackTrace();
         }
+
+    }
+
+    @Test
+    public void testA1A2Mockito() throws CellCorrectException {
+
+            Stroke strokeMockito = mock(Stroke.class);
+            Cell cell1Mockito = new Cell('a', 1);
+
+            when(strokeMockito.getFrom()).thenReturn(new Cell('a', 1));
+
+            assertEquals(strokeMockito.getFrom(), cell1Mockito);
 
     }
 

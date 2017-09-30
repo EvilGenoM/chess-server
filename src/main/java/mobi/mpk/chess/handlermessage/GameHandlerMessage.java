@@ -6,7 +6,7 @@ import mobi.mpk.chess.domain.ResultStroke;
 import mobi.mpk.chess.domain.game.ClassicGame;
 import mobi.mpk.chess.domain.game.Game;
 import mobi.mpk.chess.message.Message;
-import mobi.mpk.chess.message.Reply;
+import mobi.mpk.chess.message.reply.Reply;
 import mobi.mpk.chess.registry.UserRegistry;
 
 public class GameHandlerMessage implements HandlerMessage {

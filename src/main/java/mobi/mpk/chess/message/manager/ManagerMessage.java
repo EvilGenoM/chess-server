@@ -1,5 +1,6 @@
-package mobi.mpk.chess.message;
+package mobi.mpk.chess.message.manager;
 
+import mobi.mpk.chess.message.Message;
 import mobi.mpk.chess.message.exception.MessageErrorException;
 import mobi.mpk.chess.message.factory.*;
 

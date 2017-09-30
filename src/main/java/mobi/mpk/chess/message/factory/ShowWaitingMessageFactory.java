@@ -1,7 +1,7 @@
 package mobi.mpk.chess.message.factory;
 
 import mobi.mpk.chess.message.Message;
-import mobi.mpk.chess.message.ShowWaitingMessage;
+import mobi.mpk.chess.message.UsersMessage;
 
 public class ShowWaitingMessageFactory extends Factory {
 
@@ -10,7 +10,7 @@ public class ShowWaitingMessageFactory extends Factory {
     }
 
     public Message methodFactory() {
-        return new ShowWaitingMessage(getName());
+        return new UsersMessage(getName());
     }
 
 }

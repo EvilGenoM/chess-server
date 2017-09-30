@@ -1,14 +1,14 @@
 package mobi.mpk.chess.message;
 
-public class ShowWaitingMessage extends Message {
+public class UsersMessage extends Message {
 
-    public ShowWaitingMessage(String name) {
+    public UsersMessage(String name) {
         super(name);
     }
 
     public boolean setText(String text) {
 
-        if (text.equals("show waiting")) {
+        if (text.equals("lobby")) {
             this.text = text;
             return true;
         } else {

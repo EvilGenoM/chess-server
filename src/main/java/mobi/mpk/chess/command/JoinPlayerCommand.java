@@ -4,6 +4,8 @@ import mobi.mpk.chess.User;
 import mobi.mpk.chess.handlermessage.GameHandlerMessage;
 import mobi.mpk.chess.registry.GameRegistry;
 import mobi.mpk.chess.registry.UserRegistry;
+import mobi.mpk.chess.waitinglist.ClassicWaitingList;
+import mobi.mpk.chess.waitinglist.WaitingList;
 
 public class JoinPlayerCommand implements Command {
 
@@ -25,11 +27,17 @@ public class JoinPlayerCommand implements Command {
 
         if (this.user1 == null || this.user2 == null) {
             return "Error";
-        } else {
+        } else if(this.user1.equals(this.user2)){
+            return "Error: You entered your name";
+        } else if(ClassicWaitingList.getInstance().checkUser(user2)){
+
             GameHandlerMessage controllerGame = new GameHandlerMessage(user1, user2);
             GameRegistry.getInstance().addElement(user1, controllerGame);
             GameRegistry.getInstance().addElement(user2, controllerGame);
             return "Connect";
+
+        } else {
+            return "Error: User did not wait game";
         }
 
     }

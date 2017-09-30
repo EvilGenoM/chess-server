@@ -1,11 +1,13 @@
 package message;
 
-import mobi.mpk.chess.message.ManagerMessage;
+import mobi.mpk.chess.message.manager.ManagerMessage;
 import mobi.mpk.chess.message.Message;
 import mobi.mpk.chess.message.exception.MessageErrorException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
 
 public class TestManagerMessage {
 
@@ -98,5 +100,14 @@ public class TestManagerMessage {
     public void testException() throws MessageErrorException {
         ManagerMessage managerMessage = new ManagerMessage("Test");
         managerMessage.getMessage("a1 a2 a3");
+    }
+
+    @Test(expected = MessageErrorException.class)
+    public void testExceptionMockito() throws MessageErrorException {
+
+        ManagerMessage manager = mock(ManagerMessage.class);
+        doThrow(new MessageErrorException()).when(manager).getMessage("a1 a2 a3");
+        manager.getMessage("a1 a2 a3");
+
     }
 }

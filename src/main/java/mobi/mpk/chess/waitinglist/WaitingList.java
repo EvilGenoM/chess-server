@@ -14,6 +14,8 @@ public interface WaitingList {
 
     void getUser(String name);
 
+    boolean checkUser(User user);
+
     List<User> getListUser();
 
 }

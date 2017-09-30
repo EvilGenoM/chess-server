@@ -3,8 +3,9 @@ package mobi.mpk.chess.handlermessage;
 import mobi.mpk.chess.User;
 import mobi.mpk.chess.command.*;
 import mobi.mpk.chess.message.Message;
-import mobi.mpk.chess.message.Reply;
+import mobi.mpk.chess.message.reply.Reply;
 import mobi.mpk.chess.registry.UserRegistry;
+
 
 public class LobbyHandlerMessage implements HandlerMessage {
 
@@ -20,7 +21,7 @@ public class LobbyHandlerMessage implements HandlerMessage {
                 reply.setSuccess(true);
                 return reply;
             } else {
-                reply.setText("Error");
+                reply.setText("This name exist...");
                 return reply;
             }
         }
@@ -67,7 +68,7 @@ public class LobbyHandlerMessage implements HandlerMessage {
                 command = new ShowUsersExpectGameCommand();
                 return command.execute();
 
-            case "listPlayers":
+            case "users":
 
                 command = new ShowUsersAppCommand();
                 return command.execute();
@@ -84,7 +85,7 @@ public class LobbyHandlerMessage implements HandlerMessage {
                 return command.execute();
 
             default:
-                return "Error";
+                return "Error command";
         }
 
     }

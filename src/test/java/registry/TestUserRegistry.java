@@ -58,7 +58,7 @@ public class TestUserRegistry {
 
         User user = new User("TestUserRegistry");
         registry.addElement("TestUserRegistry", user);
-        registry.deleteElement("TestUserRegistry");
+        registry.removeElementKey("TestUserRegistry");
 
         List<User> list = new ArrayList<User>();
 
