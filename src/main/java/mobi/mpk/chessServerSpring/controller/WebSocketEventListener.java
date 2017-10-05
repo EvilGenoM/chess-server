@@ -1,6 +1,7 @@
 package mobi.mpk.chessServerSpring.controller;
 
 import mobi.mpk.chessServerSpring.model.Message;
+import mobi.mpk.chessServerSpring.registry.UserRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class WebSocketEventListener {
             message.setType(Message.MessageType.LEAVE);
             message.setSender(username);
 
-            userRegistry.removeUser(username);
+          //  userRegistry.removeElement(username);
             messagingTemplate.convertAndSend("/channel/public", message);
         }
     }

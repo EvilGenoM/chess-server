@@ -1,6 +1,10 @@
 package mobi.mpk.chessServerSpring.controller;
 
+import mobi.mpk.chessServerSpring.User;
+import mobi.mpk.chessServerSpring.domain.game.Game;
 import mobi.mpk.chessServerSpring.model.Message;
+import mobi.mpk.chessServerSpring.registry.GameRegistry;
+import mobi.mpk.chessServerSpring.registry.UserRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -18,20 +22,20 @@ public class GameController {
     private GameRegistry gameRegistry;
 
     @Autowired
-    private UserRegistry userRegistry;
+    private UserRegistry<String, User> userRegistry;
 
     @MessageMapping("/game.{username}")
     public void sendPrivateMessage(@Payload Message message, @DestinationVariable("username") String username){
 
-        User user = userRegistry.getUser(username);
-        Game game = gameRegistry.getGame(user);
+        User user = (User) userRegistry.getElement(username);
+        Game game = (Game) gameRegistry.getElement(user);
 
-        String result = game.doStroke(message.getContent());
+        String result = "";
+//        result = game.doStroke(user, message.getContent());
 
         Message messageResult = new Message();
         message.setSender("Server");
         message.setContent(result);
-        message.setType(Message.MessageType.RESULT_STROKE);
 
         simpMessagingTemplate.convertAndSend("/channel/"+username, messageResult);
 
