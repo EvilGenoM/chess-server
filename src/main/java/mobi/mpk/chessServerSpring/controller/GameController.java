@@ -22,7 +22,7 @@ public class GameController {
     private GameRegistry gameRegistry;
 
     @Autowired
-    private UserRegistry<String, User> userRegistry;
+    private UserRegistry userRegistry;
 
     @MessageMapping("/game.{username}")
     public void sendPrivateMessage(@Payload Message message, @DestinationVariable("username") String username){
