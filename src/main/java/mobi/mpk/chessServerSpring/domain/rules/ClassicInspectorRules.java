@@ -14,10 +14,12 @@ import mobi.mpk.chessServerSpring.domain.rules.rule.order.figure.OrderFigureRule
 import mobi.mpk.chessServerSpring.domain.rules.rule.possiblemove.ClassicPossibleMoveRule;
 import mobi.mpk.chessServerSpring.domain.rules.rule.possiblemove.PossibleMoveRule;
 import mobi.mpk.chessServerSpring.domain.rules.rule.stoke.figure.*;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ClassicInspectorRules implements InspectorRules {
 
     List<StrokeFigureRule> strokeFigureRules;

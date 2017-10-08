@@ -11,9 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Scope("service")
 public interface InspectorRules {
- 
+
     void checkMoveRules(Board board, Stroke stroke, Color colorPlayer) throws Exception;
 
     List<Figure> getOrderFigure(Color color);

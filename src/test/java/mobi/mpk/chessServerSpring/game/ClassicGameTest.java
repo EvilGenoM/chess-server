@@ -26,8 +26,7 @@ public class ClassicGameTest {
         playerWhite = new User("PlayerWhite");
         playerBlack = new User("PlayerBlack");
 
-        InspectorRules inspector = new ClassicInspectorRules();
-        game = new ClassicGame(playerWhite, playerBlack, inspector);
+        game = new ClassicGame(playerWhite, playerBlack);
 
     }
 

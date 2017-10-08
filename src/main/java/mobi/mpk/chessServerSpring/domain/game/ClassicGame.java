@@ -11,6 +11,7 @@ import mobi.mpk.chessServerSpring.domain.exception.rule.WayFigureHaveObstaclesEx
 import mobi.mpk.chessServerSpring.domain.figure.Figure;
 import mobi.mpk.chessServerSpring.domain.rules.ClassicInspectorRules;
 import mobi.mpk.chessServerSpring.domain.rules.InspectorRules;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,16 +20,13 @@ public class ClassicGame extends Game {
 
     private Color nowStroke = Color.white;
 
-    public ClassicGame(User user1, User user2, InspectorRules InspectorRules) {
-
-        super(user1, user2, InspectorRules);
-        initBoard();
-
-    }
+    @Autowired
+    private InspectorRules inspectorRules;
 
     public ClassicGame(User user1, User user2) {
 
-        this(user1, user2, new ClassicInspectorRules());
+        super(user1, user2);
+        initBoard();
 
     }
 
@@ -37,10 +35,10 @@ public class ClassicGame extends Game {
 
         Cell[][] cells = getBoard().getMassiveCell();
 
-        List<Figure> orderWhiteFigure = getInspectorRules().getOrderFigure(Color.white);
+        List<Figure> orderWhiteFigure = inspectorRules.getOrderFigure(Color.white);
         putWhiteFigures(cells, orderWhiteFigure);
 
-        List<Figure> orderBlackFigure = getInspectorRules().getOrderFigure(Color.black);
+        List<Figure> orderBlackFigure = inspectorRules.getOrderFigure(Color.black);
         putBlackFigures(cells, orderBlackFigure);
 
     }
@@ -89,7 +87,7 @@ public class ClassicGame extends Game {
 
             if (player.getColorFigures() == nowStroke) {
 
-                player.move(stroke, getBoard(), getInspectorRules());
+                player.move(stroke, getBoard(), inspectorRules);
                 nextStroke();
                 return new ResultStroke("Success move", true);
 

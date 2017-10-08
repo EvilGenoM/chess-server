@@ -18,14 +18,11 @@ public abstract class Game {
     private Player player1;
     private Player player2;
 
-    @Autowired
-    private InspectorRules inspectorRules;
-
     private Board board;
 
     private String name;
 
-    public Game(User user1, User user2, InspectorRules inspectorRules) {
+    public Game(User user1, User user2) {
 
         this.player1 = new Player(user1);
         this.player2 = new Player(user2);
@@ -34,8 +31,6 @@ public abstract class Game {
 
         this.player1.setColorFigures(Color.white);
         this.player2.setColorFigures(Color.black);
-
-        this.inspectorRules = inspectorRules;
 
         try {
 
@@ -63,10 +58,6 @@ public abstract class Game {
 
     protected Board getBoard() {
         return this.board;
-    }
-
-    protected InspectorRules getInspectorRules() {
-        return this.inspectorRules;
     }
 
     public String getName() {
