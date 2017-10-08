@@ -9,6 +9,7 @@ import mobi.mpk.chessServerSpring.domain.ResultStroke;
 import mobi.mpk.chessServerSpring.domain.exception.CellCorrectException;
 import mobi.mpk.chessServerSpring.domain.figure.Figure;
 import mobi.mpk.chessServerSpring.domain.rules.InspectorRules;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public abstract class Game {
     private Player player1;
     private Player player2;
 
+    @Autowired
     private InspectorRules inspectorRules;
 
     private Board board;
