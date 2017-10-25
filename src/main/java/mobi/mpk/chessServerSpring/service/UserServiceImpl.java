@@ -1,5 +1,6 @@
 package mobi.mpk.chessServerSpring.service;
 
+import mobi.mpk.chessServerSpring.model.Role;
 import mobi.mpk.chessServerSpring.model.User;
 import mobi.mpk.chessServerSpring.repository.RoleRepository;
 import mobi.mpk.chessServerSpring.repository.UserRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class UserServiceImpl implements UserService {
 
@@ -19,9 +21,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
+
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles(new HashSet<>(roleRepository.findAll()));
+
+        HashSet<Role> roles = new HashSet<Role>(roleRepository.findAll());
+
+        user.setRoles(roles);
+
         userRepository.save(user);
+
     }
 
     @Override

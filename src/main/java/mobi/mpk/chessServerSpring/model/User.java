@@ -9,9 +9,13 @@ import java.util.Set;
 public class User {
 
     private Long id;
+
     private String username;
     private String password;
+
+    @Transient
     private String passwordConfirm;
+
     private Set<Role> roles;
 
     @Id
@@ -57,7 +61,7 @@ public class User {
         return roles;
     }
 
-    public void setRoles(HashSet<User> roles) {
+    public void setRoles(HashSet<Role> roles) {
         this.roles = roles;
     }
 
