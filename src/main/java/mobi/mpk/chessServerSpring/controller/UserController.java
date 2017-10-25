@@ -10,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 public class UserController {
 
@@ -21,6 +23,22 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @RequestMapping(value = "/app", method = RequestMethod.GET)
+    public String listUsers() {
+
+        List<User> users = userService.findAll();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for(User user : users) {
+
+            stringBuilder.append(users);
+
+        }
+
+        return stringBuilder.toString();
+
+    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(String request, BindingResult bindingResult) {

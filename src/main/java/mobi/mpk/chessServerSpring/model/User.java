@@ -13,6 +13,11 @@ public class User {
     private String username;
     private String password;
 
+    @Override
+    public String toString() {
+        return username;
+    }
+
     @Transient
     private String passwordConfirm;
 
