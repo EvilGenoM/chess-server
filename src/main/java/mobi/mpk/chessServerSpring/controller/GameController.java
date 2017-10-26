@@ -1,6 +1,7 @@
 package mobi.mpk.chessServerSpring.controller;
 
 import mobi.mpk.chessServerSpring.User;
+import mobi.mpk.chessServerSpring.domain.ResultStroke;
 import mobi.mpk.chessServerSpring.domain.game.Game;
 import mobi.mpk.chessServerSpring.model.Message;
 import mobi.mpk.chessServerSpring.registry.GameRegistry;
@@ -31,16 +32,21 @@ public class GameController {
         Game game = (Game) gameRegistry.getElement(user);
 
         String result = "";
-//        result = game.doStroke(user, message.getContent());
+        ResultStroke resultStroke;
+        resultStroke = game.doStroke(user, message.getContent());
 
-        Message messageResult = new Message();
-        message.setSender("Server");
-        message.setContent(result);
+        if(resultStroke.isSuccess()){
 
-        simpMessagingTemplate.convertAndSend("/channel/"+username, messageResult);
+            message.setType(Message.MessageType.GAME_RESULT_MOVE_SUCCESS);
+            simpMessagingTemplate.convertAndSend("/channel/" + game.getName(), message);
 
-        if(result.equals("Success")){
-            simpMessagingTemplate.convertAndSend("/game/"+game.getName(), message);
+        } else {
+
+            message.setSender("Game");
+            message.setContent(resultStroke.getText());
+            message.setType(Message.MessageType.GAME_RESULT_MOVE_UNSUCCESS);
+            simpMessagingTemplate.convertAndSend("/channel/" + username, message);
+
         }
 
     }

@@ -64,5 +64,15 @@ public abstract class Game {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public abstract Color getColor(User user);
+
+    @Override
+    public boolean equals(Object o) {
+        Game game = (Game) o;
+        return this.name.equals(game.getName());
+    }
 }

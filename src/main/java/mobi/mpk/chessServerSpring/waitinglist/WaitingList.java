@@ -18,6 +18,8 @@ public interface WaitingList {
 
     boolean checkUser(User user);
 
+    boolean isEmpty();
+
     List<User> getListUser();
 
 }

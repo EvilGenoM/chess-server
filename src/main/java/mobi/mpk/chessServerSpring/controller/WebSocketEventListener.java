@@ -1,6 +1,9 @@
 package mobi.mpk.chessServerSpring.controller;
 
+import mobi.mpk.chessServerSpring.User;
+import mobi.mpk.chessServerSpring.domain.game.Game;
 import mobi.mpk.chessServerSpring.model.Message;
+import mobi.mpk.chessServerSpring.registry.GameRegistry;
 import mobi.mpk.chessServerSpring.registry.UserRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +26,9 @@ public class WebSocketEventListener {
     @Autowired
     private UserRegistry userRegistry;
 
+    @Autowired
+    private GameRegistry gameRegistry;
+
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
         logger.info("Received a new web socket connection");
@@ -40,9 +46,31 @@ public class WebSocketEventListener {
             message.setType(Message.MessageType.LEAVE);
             message.setSender(username);
 
-          //  userRegistry.removeElement(username);
+            removeGame(username);
+
             messagingTemplate.convertAndSend("/channel/public", message);
         }
+    }
+
+    private void removeGame(String username) {
+
+        User user = (User) userRegistry.getElement(username);
+        if(gameRegistry.checkKey(user)) {
+
+            Game game = (Game) gameRegistry.getElement(user);
+
+            Message messageDisconnect = new Message();
+            messageDisconnect.setSender("Game");
+            messageDisconnect.setContent(username + " disconnect");
+            messageDisconnect.setType(Message.MessageType.GAME_DISCONNECT);
+
+            gameRegistry.removeElement(game);
+            userRegistry.removeElementKey(username);
+
+            messagingTemplate.convertAndSend("/channel/" + game.getName(), messageDisconnect);
+
+        }
+
     }
 
 }

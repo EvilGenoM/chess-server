@@ -3,6 +3,7 @@ package mobi.mpk.chessServerSpring.registry;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -18,9 +19,17 @@ public abstract class Registry<K, V> {
 
     }
 
-    public void removeElement(K key) {
+    public void removeElement(V value) {
 
-        this.values.remove(key);
+        for (Map.Entry<K, V> entry : values.entrySet()) {
+
+            if(entry.getValue().equals(value)) {
+
+                values.remove(entry.getKey());
+
+            }
+
+        }
 
     }
 

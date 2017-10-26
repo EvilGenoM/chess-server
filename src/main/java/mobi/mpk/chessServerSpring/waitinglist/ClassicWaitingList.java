@@ -45,6 +45,11 @@ public class ClassicWaitingList implements WaitingList {
     }
 
     @Override
+    public boolean isEmpty() {
+        return users.isEmpty();
+    }
+
+    @Override
     public List<User> getListUser() {
 
         List<User> list = new ArrayList<User>();
