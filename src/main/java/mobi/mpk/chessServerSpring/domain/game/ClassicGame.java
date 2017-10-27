@@ -26,6 +26,7 @@ public class ClassicGame extends Game {
     public ClassicGame(User user1, User user2) {
 
         super(user1, user2);
+        inspectorRules = new ClassicInspectorRules();
         initBoard();
 
     }
@@ -151,6 +152,12 @@ public class ClassicGame extends Game {
         }
 
         return board;
+    }
+
+    @Override
+    public Color getColor(User user) {
+        Player player = getPlayer(user);
+        return player.getColorFigures();
     }
 
 }
