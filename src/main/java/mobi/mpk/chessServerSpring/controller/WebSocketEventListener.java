@@ -65,11 +65,12 @@ public class WebSocketEventListener {
             messageDisconnect.setType(Message.MessageType.GAME_DISCONNECT);
 
             gameRegistry.removeElement(game);
-            userRegistry.removeElementKey(username);
 
             messagingTemplate.convertAndSend("/channel/" + game.getName(), messageDisconnect);
 
         }
+
+        userRegistry.removeElementKey(username);
 
     }
 

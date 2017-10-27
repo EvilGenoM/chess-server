@@ -164,9 +164,24 @@ public class LobbyController {
     @SendTo("/channel/public")
     public Message addUser(@Payload Message message, SimpMessageHeaderAccessor headerAccessor){
 
-        headerAccessor.getSessionAttributes().put("username", message.getSender());
+        if (message.getType().equals(Message.MessageType.CHANGE_USERNAME)) {
 
-        userRegistry.addElement(message.getSender(), new User(message.getSender()));
+            userRegistry.removeElementKey(message.getContent());
+
+        }
+
+        if (message.getSender().equals("Anonymous")) {
+
+            String name = userRegistry.addAnonymous(message.getSender());
+            message.setContent(name);
+
+        } else {
+
+            userRegistry.addElement(message.getSender(), new User(message.getSender()));
+
+        }
+
+        headerAccessor.getSessionAttributes().put("username", message.getSender());
 
         return message;
 
