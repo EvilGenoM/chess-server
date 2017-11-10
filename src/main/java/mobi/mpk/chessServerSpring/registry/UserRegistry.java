@@ -11,7 +11,7 @@ public class UserRegistry<String, User> extends Registry<String, User> {
 
     public UserRegistry() {
 
-        values = new ConcurrentHashMap<String, User>();
+        registry = new ConcurrentHashMap<String, User>();
         anon = 0;
 
     }
@@ -24,7 +24,7 @@ public class UserRegistry<String, User> extends Registry<String, User> {
 
         }
 
-        values.put((String) name, (User) new mobi.mpk.chessServerSpring.User(name));
+        registry.put((String) name, (User) new mobi.mpk.chessServerSpring.User(name));
 
         anon++;
 

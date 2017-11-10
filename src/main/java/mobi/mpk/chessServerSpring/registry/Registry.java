@@ -1,31 +1,28 @@
 package mobi.mpk.chessServerSpring.registry;
 
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 public abstract class Registry<K, V> {
 
-    protected Map<K, V> values;
+    protected Map<K, V> registry;
 
     public void addElement(K key, V value) {
 
         if (key != null) {
-            this.values.putIfAbsent(key, value);
+            this.registry.putIfAbsent(key, value);
         }
 
     }
 
     public void removeElement(V value) {
 
-        for (Map.Entry<K, V> entry : values.entrySet()) {
+        for (Map.Entry<K, V> entry : registry.entrySet()) {
 
             if(entry.getValue().equals(value)) {
 
-                values.remove(entry.getKey());
+                registry.remove(entry.getKey());
 
             }
 
@@ -35,37 +32,37 @@ public abstract class Registry<K, V> {
 
     public void removeElementKey(K key) {
 
-        this.values.remove(key);
+        this.registry.remove(key);
 
     }
 
     public V getElement(K key) {
 
-        return values.get(key);
+        return registry.get(key);
 
     }
 
     public boolean checkElement(V value) {
 
-        return this.values.containsValue(value);
+        return this.registry.containsValue(value);
 
     }
 
     public boolean checkKey(K key) {
 
-        return this.values.containsKey(key);
+        return this.registry.containsKey(key);
 
     }
 
     public void clear() {
-        values.clear();
+        registry.clear();
     }
 
     public List<V> getListElement() {
 
         List<V> list = new ArrayList<V>();
 
-        for (V value : values.values()) {
+        for (V value : registry.values()) {
             list.add(value);
         }
 

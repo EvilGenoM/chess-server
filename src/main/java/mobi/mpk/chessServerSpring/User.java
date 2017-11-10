@@ -16,7 +16,17 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
-        return super.equals(o);
+
+        if(this == o) {
+            return true;
+        } else if (o == null) {
+            return false;
+        } else if(o instanceof User) {
+            User user = (User) o;
+            return this.equals(user.getName());
+        }
+        return false;
+
     }
 
     public String getName() {
