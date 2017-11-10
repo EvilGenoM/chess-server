@@ -114,6 +114,18 @@ public class ClassicGame extends Game {
 
     }
 
+    @Override
+    public List<User> getUsers() {
+
+        List<User> users = new LinkedList<>();
+
+        users.add(getPlayer1().getUser());
+        users.add(getPlayer2().getUser());
+
+        return users;
+
+    }
+
     private Player getPlayer(User user) {
 
         if(getPlayer1().getUser().equals(user)){

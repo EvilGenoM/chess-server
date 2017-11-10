@@ -46,6 +46,8 @@ public abstract class Game {
 
     public abstract ResultStroke doStroke(User user, String stroke);
 
+    public abstract List<User> getUsers();
+
     public abstract List<Figure> getListFiguresOnBoard();
 
     protected Player getPlayer1() {
