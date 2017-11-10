@@ -9,7 +9,7 @@ public class GameRegistry<User, Game> extends Registry<User, Game> {
 
     public GameRegistry() {
 
-        values = new ConcurrentHashMap<User, Game>();
+        registry = new ConcurrentHashMap<User, Game>();
 
     }
 
